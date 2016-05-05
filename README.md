@@ -1,4 +1,4 @@
-# WebMessenger -2016 Web programming Final project
+# WebMessenger - 2016 Web programming project
 
 ## 1. 개요
   일반인들을 대상으로 하는 채팅의 내용이 실시간으로 동기화 되는 채팅 웹 애플리케이션으로 사용자의 정보와 채팅방의 정보, 
