@@ -1,6 +1,7 @@
-/**
+/*
+/!**
  * Created by Anonymous on 2016. 4. 30..
- */
+ *!/
 Session.setDefault('counter', 0);
 
 Template.hello.helpers({
@@ -14,4 +15,4 @@ Template.hello.events({
         // increment the counter when button is clicked
         Session.set('counter', Session.get('counter') + 1);
     }
-});
+});*/
