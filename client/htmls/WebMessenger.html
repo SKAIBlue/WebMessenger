@@ -7,35 +7,30 @@
 </head>
 <body>
 {{#if currentUser}}
-    {{> StartLayout}}
-{{else}}
     {{> MainLayout}}
+{{else}}
+    {{> StartLayout}}
 {{/if}}
 </body>
-<!--<body>
-    {{> atForm}}
-</body>-->
 <template name="StartLayout">
     <nav class="light-blue lighten-1" role="navigation">
-        <div class="nav-wrapper container"><a id="logo-container" href="http://localhost:3000/" class="brand-logo">Web
-            Messenger</a>
+        <div class="nav-wrapper container"><a id="logo-container" href="http://localhost:3000/" class="brand-logo">Web Messenger</a>
+            <div class="right-align">{{> loginButtons}}</div>
             <!--<a href="http://localhost:3000/" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>-->
         </div>
     </nav>
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
             <br><br>
-
             <h1 class="header center orange-text">Web Messenger</h1>
             <div class="row center">
                 <h5 class="header col s12 light">간편하게 친구들과 대화를 시작하세요!</h5>
             </div>
             <div class="row center">
-                <a href="" id="download-button" class="btn-large waves-effect waves-light orange">시작하기</a>
-
+                <button id="start-button" class="btn-large waves-effect waves-light orange">시작하기</button>
             </div>
             <br><br>
-            <div class="parallax"><img src="../img/startpage.jpg" alt="Unsplashed background img 1"></div>
+            <div class="parallax"><img src="../img/startpage.jpg" alt="Unsplashed background img 1"></div> <!-- TODO -->
         </div>
     </div>
     <div class="container">
@@ -61,7 +56,7 @@
                 <div class="col s12 m4">
                     <div class="icon-block">
                         <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-                        <h5 class="center">손쉬운 사용</h5>
+                        <h5 class="center">손쉬운 접근</h5>
                         <p class="light center">간편한 회원 가입과 사용법</p>
                     </div>
                 </div>
@@ -69,9 +64,7 @@
 
         </div>
         <br><br>
-
         <div class="section">
-
         </div>
     </div>
 
@@ -82,7 +75,6 @@
                     <h5 class="white-text">웹프로그래밍</h5>
                     <p class="grey-text text-lighten-4">20101713 김태훈</p>
                     <p class="grey-text text-lighten-4">20131730 박종우</p>
-
                 </div>
                 <div class="col l3 s12">
                     <h5 class="white-text">About</h5>
@@ -98,19 +90,26 @@
             </div>
         </div>
     </footer>
-
-    <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("start-button").click(function () {
+                console.log("Button clicked!");
+                /*$("start-button").animate({left: '250px'});*/
+            });
+        });
+    </script>
 </template>
 
+<!--------------------------------------- Main template---------------------------------------------->
 <template name="MainLayout">
-    <nav class="blue-grey">
+    <!--<nav class="blue-grey">
+        <div class="right-align"></div>
         <ul id="slide-out" class="side-nav">
             <li><a href="#!">Chat1</a></li>
             <li><a href="#!">Chat2</a></li>
         </ul>
         <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-    </nav>
+    </nav>-->
     <div class="row">
         <div class="col s12 m4 l3 light-blue hide-on-med-and-down">
             <li><a href="#!"><h5 class="white-text">Chat1</h5></a></li>
@@ -118,6 +117,7 @@
             <li><a href="#!"><h5 class="white-text">Chat3</h5></a></li>
             <li><a href="#!"><h5 class="white-text">Chat4</h5></a></li>
             <li><a href="#!"><h5 class="white-text">Chat5</h5></a></li>
+            <div class="">{{> loginButtons}}</div>
         </div>
         <div class="col s9">
             <div class="row">
@@ -125,11 +125,8 @@
                 <div class="col s12"><span class="flow-text">안녕하세요?</span></div>
                 <div class="col s6 offset-s6"><span class="flow-text">안녕하세요.</span></div>
             </div>
-
         </div>
-
     </div>
-
     <script>
         $(".button-collapse").sideNav();
     </script>
