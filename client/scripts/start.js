@@ -7,6 +7,9 @@ Template.StartLayout.events({
      * 시작하기 버튼을 눌렀을 때 작동합니다
      */
     "click #start-button": function(){
-        Meteor.call("onClickStartButton");
+        $("#start-button").remove();
+
+        Template.StartLayout.onRendered
+        //Meteor.call("onClickStartButton");
     }
 })
