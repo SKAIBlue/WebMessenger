@@ -1,103 +1,107 @@
 <head>
-    <title>Todo List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>Web Messenger</title>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-
 <body>
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="http://localhost:3000/" class="brand-logo">Web Messenger</a>
+        <!--<a href="http://localhost:3000/" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>-->
+    </div>
+</nav>
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <br><br>
 
-    {{> atForm}} <!--로그인 폼 배경화면, 네비게이션 추가 예정-->
+        <h1 class="header center orange-text">Web Messenger</h1>
+        <div class="row center">
+            <h5 class="header col s12 light">간편하게 친구들과 대화를 시작하세요!</h5>
+        </div>
+        <div class="row center">
+            {{> MasterLayout}}
+        </div>
+        <br><br>
+<!--        <div class="parallax"><img src="img/background1.jpg" alt="Unsplashed background img 1"></div>-->
+    </div>
+</div>
+<div class="container">
+    <div class="section">
+
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
+                    <h5 class="center">빠른 속도</h5>
+                    <p class="light center">실시간으로 전송되는 메세지</p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+                    <h5 class="center">사용자 경험</h5>
+                    <p class="light center">사용자 편의를 집중으로한 인터페이스</p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
+                    <h5 class="center">손쉬운 사용</h5>
+                    <p class="light center">간편한 회원 가입과 사용법</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br><br>
+
+    <div class="section">
+
+    </div>
+</div>
+
+<footer class="page-footer light-blue">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">웹프로그래밍</h5>
+                <p class="grey-text text-lighten-4">20101713 김태훈</p>
+                <p class="grey-text text-lighten-4">20131730 박종우</p>
+
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">About</h5>
+                <ul>
+                    <li><a class="white-text" href="https://github.com/SKAIBlue/WebMessenger">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright light-blue">
+        <div class="container">
+            <a class="white-text">Made by Materialize</a>
+        </div>
+    </div>
+</footer>
+
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+</body>
+<!--<body>
+
+    {{> atForm}}
 
     {{#if currentUser}}
         {{> MasterLayout}}
-        <h5> 채팅</h5>
     {{/if}}
 
-</body>
+</body>-->
 <template name="MasterLayout">
-    <nav class="navbar navbar-inverse navbar-fixed-top light-blue lighten-2" role="navigation">
-
-        <div class ="right-align">
-            {{> loginButtons}}
-        </div>
-    </nav>
-
-    <script src="/scripts/d3.min.js"></script>
-    <script>
-        //Test용
-        var width = 960,
-                height = 500;
-
-        var nodes = d3.range(20).map(function() { return {radius: Math.random() * 12 + 40}; }),
-                root = nodes[0],
-                color = d3.scale.category10();
-
-        root.radius = 0;
-        root.fixed = true;
-
-        var force = d3.layout.force()
-                .gravity(0.05)
-                .charge(function(d, i) { return i ? 0 : -2000; })
-                .nodes(nodes)
-                .size([width, height]);
-
-        force.start();
-
-        var svg = d3.select("body").append("svg")
-                .attr("width", width)
-                .attr("height", height);
-
-        svg.selectAll("circle")
-                .data(nodes.slice(1))
-                .enter().append("circle")
-                .attr("r", function(d) { return d.radius; })
-                .style("fill", function(d, i) { return color(i % 3); });
-
-        /*svg.append("text")
-                .attr("x", function(d) { return x(d) - 3; })
-                .attr("y", barHeight / 2)
-                .attr("dy", ".35em")
-                .text(function(d,i) { return "채팅방"+i; });*/
-
-        force.on("tick", function(e) {
-            var q = d3.geom.quadtree(nodes),
-                    i = 0,
-                    n = nodes.length;
-
-            while (++i < n) q.visit(collide(nodes[i]));
-
-            svg.selectAll("circle")
-                    .attr("cx", function(d) { return d.x; })
-                    .attr("cy", function(d) { return d.y; });
-        });
-
-        /*svg.on("mousemove", function() {
-            var p1 = d3.mouse(this);
-            root.px = p1[0];
-            root.py = p1[1];
-            force.resume();
-        });*/
-
-        function collide(node) {
-            var r = node.radius + 16,
-                    nx1 = node.x - r,
-                    nx2 = node.x + r,
-                    ny1 = node.y - r,
-                    ny2 = node.y + r;
-            return function(quad, x1, y1, x2, y2) {
-                if (quad.point && (quad.point !== node)) {
-                    var x = node.x - quad.point.x,
-                            y = node.y - quad.point.y,
-                            l = Math.sqrt(x * x + y * y),
-                            r = node.radius + quad.point.radius;
-                    if (l < r) {
-                        l = (l - r) / l * .5;
-                        node.x -= x *= l;
-                        node.y -= y *= l;
-                        quad.point.x += x;
-                        quad.point.y += y;
-                    }
-                }
-                return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
-            };
-        }
-    </script>
+    <a href="" id="download-button" class="btn-large waves-effect waves-light orange">시작하기</a>
 </template>
