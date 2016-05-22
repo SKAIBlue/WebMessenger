@@ -6,9 +6,33 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-{{#if currentUser}}
-    {{> MainLayout}}
-{{else}}
+<!-- 블레이즈에서 else if 문을 이렇게 쓰는게 맞는지 모르겠습니다-->
+{{#if stateStart}}
     {{> StartLayout}}
+{{else}}
+    {{#if stateLogIn}}
+    <!-- 로그인 레이아웃-->
+        {{> LoginLayout}}
+    {{else}}
+        {{#if stateSignUp}}
+            <!-- 회원가입 레이아웃 -->
+            {{> SignUpLayout}}
+        {{else}}
+            {{#if stateChat}}
+                {{> MainLayout}}
+            {{else}}
+                <!-- 오류 -->
+            {{/if}}
+        {{/if}}
+    {{/if}}
 {{/if}}
 </body>
+
+<!--임시 템플릿-->
+<template name="LoginLayout">
+    <h1>로그인 레이아웃</h1>
+</template>
+
+<template name="SignUpLayout">
+    <h1>회원가입 레이아웃</h1>
+</template>
