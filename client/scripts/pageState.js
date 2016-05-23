@@ -22,11 +22,6 @@ PageState = Object.freeze({
 });
 
 Session.setDefault("pageState", PageState.START);
-var currentUser = Session.get("currentUser");
-if(currentUser)
-{
-    Session.set("pageState", PageState.CHAT);
-}
 
 /**
  * HTML 파일에서 현재 상태를 가져올 수 있습니다
@@ -34,19 +29,19 @@ if(currentUser)
  * {{/if}}
  */
 Template.body.helpers({
-    stateStart:function()
+    stateStart()
     {
         return Session.get("pageState") == PageState.START;
     },
-    stateLogIn:function()
+    stateLogIn()
     {
         return Session.get("pageState") == PageState.LOG_IN;
     },
-    stateSignUp:function()
+    stateSignUp()
     {
         return Session.get("pageState") == PageState.SIGN_UP;
     },
-    stateChat:function()
+    stateChat()
     {
         return Session.get("pageState") == PageState.CHAT;
     }

@@ -6,7 +6,8 @@ Template.StartLayout.events({
     /**
      * 시작하기 버튼을 눌렀을 때 작동합니다
      */
-    "click #start-button": function(){
+    "click #start-button" ()
+    {
         //$("#start-button").remove();
         //Template.StartLayout.onRendered
         // 상태를 회원가입으로 바꿈 ( 템플릿 변경 )

@@ -7,19 +7,19 @@
 </head>
 <body>
 <!-- 블레이즈에서 else if 문을 이렇게 쓰는게 맞는지 모르겠습니다-->
-{{#if stateStart}}
-    {{> StartLayout}}
+{{#if currentUser}}
+    {{> MainLayout}}
 {{else}}
-    {{#if stateLogIn}}
-    <!-- 로그인 레이아웃-->
-        {{> LoginLayout}}
+    {{#if stateStart}}
+        {{> StartLayout}}
     {{else}}
-        {{#if stateSignUp}}
-            <!-- 회원가입 레이아웃 -->
-            {{> SignUpLayout}}
+        {{#if stateLogIn}}
+            <!-- 로그인 레이아웃-->
+            {{> LoginLayout}}
         {{else}}
-            {{#if stateChat}}
-                {{> MainLayout}}
+            {{#if stateSignUp}}
+            <!-- 회원가입 레이아웃 -->
+                {{> SignUpLayout}}
             {{else}}
                 <!-- 오류 -->
             {{/if}}
@@ -31,8 +31,16 @@
 <!--임시 템플릿-->
 <template name="LoginLayout">
     <h1>로그인 레이아웃</h1>
+    <input type="text" id="email-input-field"/>
+    <input type="password" id="password-input-field"/>
+    <button id="log-in-button" class="btn-large waves-effect waves-light orange">로그인</button>
 </template>
 
 <template name="SignUpLayout">
     <h1>회원가입 레이아웃</h1>
+    <input type="text" id="email-input-field"/>
+    <input type="password" id="password-input-field"/>
+    <button id="sign-up-button" class="btn-large waves-effect waves-light orange">회원가입</button>
+    <button id="log-in-button" class="btn-large waves-effect waves-light orange">로그인</button>
+    <button id="forgot-account-button" class="btn-large waves-effect waves-light orange">계정 찾기</button>
 </template>
