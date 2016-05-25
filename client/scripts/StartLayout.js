@@ -13,7 +13,5 @@ Template.StartLayout.events({
         Blaze.render(LoginLayout, LoginId); // 탬플릿 랜더링
         $('.at-title').remove();            //at-form 타이틀 제거
         $('#at-btn').addClass('light-blue');//버튼색상 변경
-        // 상태를 회원가입으로 바꿈 ( 템플릿 변경 )
-        Session.set("pageState", PageState.CHAT);
     }
 })
