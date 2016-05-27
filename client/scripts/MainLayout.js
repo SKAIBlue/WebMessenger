@@ -30,6 +30,6 @@ Template.MainLayout.helpers({
 });
 
 Template.MainLayout.events({
-    
+
 })
 
