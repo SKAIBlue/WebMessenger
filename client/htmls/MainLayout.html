@@ -12,7 +12,7 @@
         </ul>
         <div class="right-align"></div>
     </nav>
-    <div class="row">
+    <div class="room-list">
         <div class="col s6 m4 l3 hide-on-med-and-down"><br>
             <div class="grey lighten-5 z-depth-1 hoverable">
                 <div class="row valign-wrapper">
@@ -25,31 +25,15 @@
                 </div>
             </div>
         </div>
-        <div class="right-aligned">
-            <div class="row">
-                <div class="left-align"><span class="flow-text">안녕하세요?</span></div>
-                <div class="right-align"><span class="flow-text">안녕하세요.</span></div>
-                <div class="row s9 offset-m6"><input></div>
-            </div>
+    </div>
+    <div class="chat-list">
+        <div class="chat">
+            <div class="bubble me">Hello there!<br><div class="time">2016.05.27.</div></div>
+            <div class="bubble you">Hi. I'm an expandeable chat box with box shadow. How are you? I expand horizontally and vertically, as you can see here.</div>
+            <div class="bubble me">Awesome.</div>
         </div>
     </div>
-    <div class="modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    <p>One fine body…</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="input-chat"><input></div>
     <script>
         $(document).ready(function(){
             $(".button-collapse").sideNav();
