@@ -25,3 +25,5 @@ accounts-password
 softwarerero:accounts-t9n
 standard-minifier-css
 standard-minifier-js
+tomi:upload-server
+tomi:upload-jquery
