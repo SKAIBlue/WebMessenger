@@ -27,7 +27,7 @@ var chatRoom =  {
 
 }
 
-Template.ImageUpload.helpers({
+Template.ChooseImage.helpers({
     profile()
     {
         return profile;
@@ -35,13 +35,15 @@ Template.ImageUpload.helpers({
     chatRoom()
     {
         return chatRoom;
-    }
+    },
+    fileTypes:'image/*'
 });
 
-Template.ImageUpload.events({
-    'click #image-upload'()
+Template.ChooseImage.events({
+    'click .start'(e)
     {
-
+        console.log(Template.instance(), e);
+        Uploader.startUpload(Template.instance(), e);
     }
 });
 

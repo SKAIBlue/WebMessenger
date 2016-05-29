@@ -1,0 +1,44 @@
+.jqDropZone {
+    position: relative;
+    background: #00FFFFFF;
+    width: 100%;
+    height: 100%;
+    line-height: 50px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0;
+}
+.jqDropZone.in {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    line-height: 200px;
+    font-size: 0;
+}
+.jqDropZone.hover {
+    background: #08f;
+}
+
+.jqDropZone.fade {
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    opacity: 1;
+}
+
+#hide-file-upload-box {  /* 파일 필드 숨기기 */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0;
+}
+
+#hide-file-box{
+
+}

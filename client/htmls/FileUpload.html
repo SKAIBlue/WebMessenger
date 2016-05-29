@@ -1,16 +1,37 @@
-<!-- 이미지만 업로드할 때 사용하는 템플릿 -->
-<template name="ImageUpload">
+<!-- 이미지를 선택할 때 사용하는 템플릿-->
+<template name="ChooseImage">
+    <style>
+        #file { width:0; height:0; }
+    </style>
+    <script>
+        $(function () {
+            $('#btn-upload').click(function(e){
+                e.preventDefault();
+                $("input:file").click();
+                $('input:file').val();
+            });
+        });
+    </script>
+    <input type="image" src="/img/default_profile.png" id='btn-upload' width="40px" height="40px"/>
     <form method="POST" enctype="multipart/form-data">
-        <input type="file" class="jqUploadclass" data-form-data='{{ submitData }}'>
-        {{#with infoLabel}}
-            {{ infoLabel}} <button class="start">StartUpload</button>
+    <input type='file' id='file' name='file' class="jqUploadclass" accept='{{fileTypes}}' data-form-data='{{submitData}}'/>
+    {{#with infoLabel}}
+        {{infoLabel}}
+    {{/with}}
+    </form>
+    <!--
+        <div class="filebox">
+            <label for="ex_file">업로드</label>
+            <input type="file" class="jqUploadclass" id="hide-file-upload-box" >
+        </div>
+
             <div style="width: 200px; height: 30px; border: 1px solid black">
                 <div style="background: red; height: 30px; width: {{ progress }}">
                     {{ progress }}
                 </div>
             </div>
-        {{/with}}
-    </form>
+            -->
+    <button class="start">StartUpload</button>
 </template>
 
 <!-- 모든 파일 디자인 수정 가능함-->
@@ -18,12 +39,16 @@
 
 </template>
 
-<!-- 투명한 이미지 파일 드랍 존 -->
+<!-- 투명한 이미지 파일 드랍존(부모 노드의 크기) 입니다. -->
 <template name="InvisibleImageDropZone">
-
+    {{> dropzone fileTypes="image/*"}}
 </template>
 
 <!-- 투명한 모든 파일 드랍 존 -->
 <template name="InvisibleFileDorpZone">
+    {{> dropzone}}
+</template>
+
+<template name="HideUploadButton">
 
 </template>

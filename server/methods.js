@@ -50,5 +50,19 @@ Meteor.methods({
     {
         return UserAddition.findOne({userId:id}, callback);
     },
+    
+    'DeleteFile'(_id)
+    {
+        check(_id, String);
+        
+        var upload = Uploads.findOne(_id);
+        if(upload == null)
+        {
+            throw new Meteor.Error(404, 'Upload not found');
+        }
+        
+        Uploads.remove(_id);
+        UploadServer.delete(upload.path);
+    }
 });
 
