@@ -1,17 +1,18 @@
 <template name="MainLayout">
     <nav class="light-blue">
-        <div class="right-align"></div>
         <ul id="slide-out" class="side-nav">
             <li><a href="#!">Chat1</a></li>
             <li><a href="#!">Chat2</a></li>
         </ul>
         <a href="#!" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="#!"><i class="material-icons left tooltipped" data-position="bottom" data-delay="50" data-tooltip="대화 시작">add</i></a></li>
+            <li><a href="#!"><i class="material-icons left tooltipped" data-position="bottom" data-delay="50"
+                                data-tooltip="대화 시작">add</i></a></li>
             <li>{{> loginButtons}}</li>
         </ul>
         <div class="right-align"></div>
     </nav>
+    <!-- 채팅방 리스트 목록 div-->
     <div class="room-list">
         <div class="col s6 m4 l3 hide-on-med-and-down"><br>
             <div class="grey lighten-5 z-depth-1 hoverable">
@@ -26,16 +27,31 @@
             </div>
         </div>
     </div>
-    <div class="chat-list">
+    <!-- 채팅내용 리스트 목록 div-->
+    <div class="chat-list row">
         <div class="chat">
-            <div class="bubble me">Hello there!<br><div class="time">2016.05.27.</div></div>
-            <div class="bubble you">Hi. I'm an expandeable chat box with box shadow. How are you? I expand horizontally and vertically, as you can see here.</div>
-            <div class="bubble me">Awesome.</div>
+            <div class="col s12">
+                <div class="bubble me">Hello there!!Hello there!!Hello there!!Hello there!!Hello there!!<br>
+                    <div class="time">2016.05.27.</div>
+                </div>
+            </div>
+            <div class="col s12">
+                <img src="/img/default_profile.png" class="circle profile-chat you">김태훈<br>
+                <div class="bubble you">안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요<br>
+                    <div class="time">2016.05.27.</div>
+                </div>
+            </div>
+            <div class="col s12">
+                <img src="/img/default_profile.png" class="circle profile-chat you">김태훈<br>
+                <div class="bubble you">안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요<br>
+                    <div class="time">2016.05.27.</div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="input-chat"><input></div>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $(".button-collapse").sideNav();
             $('.tooltipped').tooltip({delay: 50});
         });

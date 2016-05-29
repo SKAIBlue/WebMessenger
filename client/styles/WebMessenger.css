@@ -30,22 +30,29 @@
     width:  20px;
 }
 
-.me {
+.you {
+    right:10px;
     float: left;
-    margin: 5px 45px 5px 20px;
+    margin: 5px 9px 10px 20px;
 }
 
-.me::before {
+.you::before {
     box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
     left: -9px;
 }
-.you {
+
+.me {
     float: right;
-    margin: 5px 45px 5px 20px;
+    margin: 5px 45px 10px 20px;
 }
-.you::before {
+.me::before {
     box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
     right: -9px;
+}
+.profile-chat {
+    height:32px;
+    width: 32px;
+    font-size: 8pt;
 }
 .room-list{
     margin-right:80%;
