@@ -1,7 +1,5 @@
 /* CSS declarations go here */
-.chat {
-    width: 100%;
-}
+
 
 .bubble{
     background-color: #F2F2F2;
@@ -54,12 +52,27 @@
     width: 32px;
     font-size: 8pt;
 }
+.profile-room {
+    height:64px;
+    width: 64px;
+    align:center;
+}
 .room-list{
-    margin-right:80%;
-
+    width:20%;
+    height :100%;
+    float:left;
+}
+.room{
+    width :100%;
 }
 .chat-list{
-    margin-left:25%;
+    width:80%;
+    height :100%;
+    margin-left:20%;
+}
+.chat {
+    width: 100%;
+    margin-top:1%;
 }
 .time {
     float : right;
@@ -68,10 +81,22 @@
     color: #B2B2B2;
 }
 .input-chat{
-    margin-left : 30%;
-    margin-top  : 50%;
+    margin-left : 25%;
+    margin-top  : 100px;
     margin-right :5%;
 }
 .input-chat-mobile{
      margin-top  : 50%
  }
+@media screen and (max-width:992px) {
+    .input-chat {
+        margin-left  : 2%;
+        margin-right : 5%;
+        margin-bottom  : 0%;
+    }
+    .chat-list{
+        margin-top  : 1%;
+        margin-left : 0%;
+    }
+
+}
