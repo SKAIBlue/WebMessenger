@@ -12,56 +12,46 @@
         </ul>
         <div class="right-align"></div>
     </nav>
+    <div class="people-list" id="people-list">
+        <div class="search">
+            <input type="text" placeholder="검색" />
+        </div>
+        <ul class="list">
+            <a class="btn"><li>
+                <img src="/img/default_profile.png" class="circle responsive-img profile-room"/>
+                <div class="about">
+                    <div class="name">김태훈님의 채팅방</div>
+                </div>
+            </li></a>
+        </ul>
+        </div>
     <!-- 채팅방 리스트 목록 div-->
     <div class="room-list hide-on-med-and-down">
-        <div class="blue-grey lighten-5 hoverable room">
-            <div class="valign-wrapper">
-                <div class="profile-room">
-                    <img src="/img/default_profile.png" class="circle responsive-img">
-                </div>
-                <div>
-                    <h6>김태훈님 채팅방</h6>
-                </div>
-            </div>
-        </div>
-
-        <div class="blue-grey lighten-5 hoverable room">
-            <div class="valign-wrapper">
-                <div class="profile-room">
-                    <img src="/img/default_profile.png" class="circle responsive-img">
-                </div>
-                <div>
-                    <h6>김태훈님 채팅방</h6>
-                </div>
-            </div>
-        </div>
+        {{#each chat_room_list}}
+            {{> room}}
+        {{/each}}
     </div>
-
     <!-- 채팅내용 리스트 목록 div-->
     <div class="chat-list">
         <div class="chat row">
-            <div class="col s12 me">
-                <div class="bubble me">Hello there!!Hello there!!Hello there!!Hello there!!Hello there!!<br>
-                    <div class="time">2016.05.27.</div>
-                </div>
-            </div>
-            <br>
-            <div class="col s12 you">
-                <img src="/img/default_profile.png" class="circle profile-chat you">김태훈<br>
-                <div class="bubble you">안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요<br>
-                    <div class="time">2016.05.27.</div>
-                </div>
-            </div>
-            <div class="col s12 you">
-                <img src="/img/default_profile.png" class="circle profile-chat you">김태훈<br>
-                <div class="bubble you">안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요 안녕하세요<br>
-                    <div class="time">2016.05.27.</div>
-                </div>
-            </div>
+            {{#each chat_list}}
+                {{>chat}}
+            {{/each}}
         </div>
     </div>
-    <div class="input-chat col s12"><input></div>
-    <script>
+    <div class="chat-message clearfix">
+        <textarea name="message-to-send" id="message-to-send" placeholder ="메세지를 입력하세요." rows="3"></textarea>
+        <a><i class="material-icons">attachment</i></a>
+        <a class="waves-effect waves-light tooltipped send-chat-btn" data-position="top" data-delay="50"
+           data-tooltip="전송"><i class="material-icons">send</i></a>
+
+    </div>
+    <!--<ul>
+        <li><div class="input-chat"><input></div></li>
+        <li><a class="waves-effect waves-light tooltipped send-chat-btn" data-position="top" data-delay="50"
+               data-tooltip="전송"><i class="material-icons">send</i></a></li>
+    </ul>-->
+       <script>
         $(document).ready(function () {
             $(".button-collapse").sideNav();
             $('.tooltipped').tooltip({delay: 50});

@@ -26,8 +26,27 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated()
 });
 
 Template.MainLayout.helpers({
-
+    chat_room_list: [
+        {
+            chatRoomName: '김태훈의 채팅방',
+            chatRoomImage: '/img/default_profile.png'
+        }
+    ],
+    chat_list:[
+        {
+            chatText:'123123123',
+            chatTime:'2016.07.07',
+            isMy : 'me' // TODO 함수정의 필요 return me or you
+        },
+        {
+            chatText:'123123123',
+            chatTime:'2016.07.07',
+            isMy : 'me' // TODO 함수정의 필요 return me or you
+        }
+    ]
 });
+
+
 
 Template.MainLayout.events({
     
