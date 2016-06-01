@@ -1,26 +1,30 @@
 <!-- 이미지를 업로드 할 때 사용하는 템플릿 예 입니다-->
 <template name="ChooseImage">
-    <!-- 본래의 파일 선택 입력을 숨기기 위한 스타일 설정입니다 -->
-    <style>
-        #choose-file-form { width:0; height:0; }
-        #choose-profile {width:0; height:0}
-    </style>
-    <!-- 다른 버튼의 클릭 입력으로 본래의 파일 선택 클릭을 호출 합니다 -->
+    <!-- 파일이 선택되었을 때, 이미지를 변경하는 스크립트입니다 -->
     <script>
-        $(function () {
-            $('#btn-upload').click(function(e){
-                e.preventDefault();
-                $("#choose-profile:file").click();
-            });
-        });
+        /**
+         * input의 값을 읽어 doc의 src 값을 변경함
+         * @param input input 엘리먼트
+         * @param selector 선택자
+         */
+        function readURL(input, selector) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    // 하나의 문서에 이 아이디는 하나만 존재 해야함
+                    $(selector).attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
-    <!-- 파일 업로드 버튼을 커스터마이징 하길 원한다면 id를 btn-upload 로 하시면됩니다-->
-    <input type="image" src="/img/default_profile.png" id='btn-upload' width="40px" height="40px"/>
-    <!-- 실제 파일 업로드가 입력이 되는 파일 인풋 태그입니다
-    이미지만 선택 가능하도록 하길 원한다면 accept 속성을 imageFileType 으로
-    모든 파일을 선택 가능하도록 하길 원한다면 allFileType 으로 설정하시면 됩니다-->
+    <!-- 파일이 선택되었을 때 바뀔 이미지 엘리먼트 입니다 -->
+    <input id="uploaded-image" type="image" src="#" width="500px" height="500px">
     <form id="choose-file-form" method="POST" enctype="multipart/form-data">
-    <input type='file' id='choose-profile' name='file' class="jqUploadclass" accept='{{imageFileType}}' data-form-data='{{submitData}}'/>
+        <div class="upload">
+            <!-- 파일 경로 값이 변경되면 readURL 함수를 호출합니다. -->
+            <input type='file' id='choose-profile' name='file' class="jqUploadclass" accept='{{allFileType}}' data-form-data='{{submitData}}' onchange="readURL(this,'#uploaded-image')"/>
+        </div>
     </form>
     <!-- class 이름을 start 로 한다면 클릭 했을 때 선택된 파일을 업로드 할 것 입니다-->
     <button class="start">StartUpload</button>

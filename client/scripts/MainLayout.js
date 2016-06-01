@@ -26,7 +26,20 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated()
 });
 
 Template.MainLayout.helpers({
-
+    'ChatList'(){
+        return[{
+            chat_profile:"/img/default_profile.png",
+            chat_text:"안녕하세요안녕하세요",
+            chat_date:"2016.12.01",
+            isMyChat:true
+        },{
+            chat_profile:"/img/default_profile.png",
+            chat_text:"안녕하세요안녕하세요22222222222",
+            chat_date:"2016.12.01",
+            isMyChat:false
+        }
+        ];
+    }
 });
 
 Template.MainLayout.events({

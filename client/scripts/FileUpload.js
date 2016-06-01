@@ -45,13 +45,17 @@ Template.ChooseImage.helpers({
     },
     imageFileType:'image/*',
     allFileType:''
-
 });
 
 Template.ChooseImage.events({
     'click .start'(e)
     {
         Uploader.startUpload.call(Template.instance(), e);
+    },
+    // 블레이즈에서 input 태그의 change 이벤트를 받을 수 없음
+    'change #choose-profile'(event, template)
+    {
+        console.log("on Change choose profile");
     }
 });
 
@@ -107,6 +111,7 @@ Template.customUpload.helpers({
         }
         var progress = instance.globalInfo.get();
 
+        console.log(progress.getDisplayPath().toString());
         // we display different result when running or not
         return progress.running ?
         info.name + ' - ' + progress.progress + '% - [' + progress.bitrate + ']' :
