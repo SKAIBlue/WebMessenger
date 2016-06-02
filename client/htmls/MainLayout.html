@@ -1,5 +1,5 @@
 <template name="MainLayout">
-    <nav class="light-blue">
+    <nav class="blue-grey">
         <ul id="slide-out" class="side-nav">
             <li><a href="#!">Chat1</a></li>
             <li><a href="#!">Chat2</a></li>
@@ -12,21 +12,11 @@
         </ul>
         <div class="right-align"></div>
     </nav>
-    <div class="people-list" id="people-list">
+    <!-- 채팅방 리스트 목록 div-->
+    <div class="room-list hide-on-med-and-down">
         <div class="search">
             <input type="text" placeholder="검색" />
         </div>
-        <ul class="list">
-            <a class="btn"><li>
-                <img src="/img/default_profile.png" class="circle responsive-img profile-room"/>
-                <div class="about">
-                    <div class="name">김태훈님의 채팅방</div>
-                </div>
-            </li></a>
-        </ul>
-        </div>
-    <!-- 채팅방 리스트 목록 div-->
-    <div class="room-list hide-on-med-and-down">
         {{#each chat_room_list}}
             {{> room}}
         {{/each}}

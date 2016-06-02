@@ -41,7 +41,7 @@
 
 .me {
     float: right;
-    margin: 5px 1px 10px 20px;
+    margin: 5px 8px 10px 20px;
 }
 .me::before {
     box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
@@ -59,19 +59,22 @@
 }
 .room-list{
     width:20%;
-    height :100%;
+    height :800px;
+    background: #444753;
     float:left;
 }
 .room{
-    width :100%;
+    width :80%;
+    margin-left: 10%;
+}
+.search{
+    padding: 20px;
 }
 .chat-list{
-    width:78%;
+    width:80%;
     height :100%;
     margin-left:20%;
-}
-.chat {
-    margin-top:1%;
+    background: #F2F5F8;
 }
 .time {
     float : right;
@@ -85,8 +88,6 @@
     margin-top: 45%;
     margin-left : 25%;
 }
-.send-chat-btn{
-}
 .input-chat-mobile{
      margin-top  : 50%
  }
@@ -97,50 +98,8 @@
         margin-bottom  : 0%;
     }
     .chat-list{
-        width:98%;
+        width:100%;
         height :100%;
         margin-left:0%;
     }
-}
-.people-list {
-    width: 20%;
-    float: left;
-    background: #444753;
-}
-.people-list .search {
-    padding: 5%;
-}
-.people-list input {
-    border-radius: 3px;
-    border: none;
-    padding: 14px;
-    color: white;
-    background: #6A6C75;
-    width: 90%;
-    height :5%;
-    font-size: 14px;
-}
-.people-list .fa-search {
-    position: relative;
-    left: -25px;
-}
-.people-list ul {
-    padding: 20px;
-    height: 770px;
-}
-.people-list ul li {
-    padding-bottom: 20px;
-}
-.people-list img {
-    float: left;
-}
-.people-list .about {
-    float: left;
-    margin-top: 8px;
-}
-.people-list .about {
-    padding-left: 8px;
-}
-.people-list .name {
-    color:white;
 }

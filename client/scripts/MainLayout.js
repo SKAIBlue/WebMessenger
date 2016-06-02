@@ -42,6 +42,11 @@ Template.MainLayout.helpers({
             chatText:'123123123',
             chatTime:'2016.07.07',
             isMy : 'me' // TODO 함수정의 필요 return me or you
+        },
+        {
+            chatText:'123123123',
+            chatTime:'2016.07.07',
+            isMy : 'you' // TODO 함수정의 필요 return me or you
         }
     ]
 });
