@@ -30,23 +30,36 @@ Template.MainLayout.helpers({
         {
             chatRoomName: '김태훈의 채팅방',
             chatRoomImage: '/img/default_profile.png'
+        },
+        {
+            chatRoomName: '김태훈의 채팅방',
+            chatRoomImage: '/img/default_profile.png'
         }
     ],
     chat_list:[
         {
-            chatText:'123123123',
+            chatWho:'김태훈',
+            chatProfile:'/img/default_profile.png',
+            chatText:'안녕하세요.',
             chatTime:'2016.07.07',
-            isMy : 'me' // TODO 함수정의 필요 return me or you
+            isMy : false, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
+            position : "me" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
         },
         {
-            chatText:'123123123',
+            chatWho:'김태훈',
+            chatProfile:'/img/default_profile.png',
+            chatText:'반갑습니다.',
             chatTime:'2016.07.07',
-            isMy : 'me' // TODO 함수정의 필요 return me or you
+            isMy : false, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
+            position : "me" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
         },
         {
-            chatText:'123123123',
+            chatWho:'홍길동',
+            chatProfile:'/img/default_profile.png',
+            chatText:'반갑습니다.',
             chatTime:'2016.07.07',
-            isMy : 'you' // TODO 함수정의 필요 return me or you
+            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
+            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
         }
     ]
 });

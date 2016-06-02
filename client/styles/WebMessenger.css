@@ -51,15 +51,26 @@
     height:32px;
     width: 32px;
     font-size: 8pt;
+    margin-left:0%;
 }
 .profile-room {
     height:64px;
     width: 64px;
     align:center;
 }
+.profile-room-mobile {
+    height:50px;
+    width: 50px;
+    margin-top:10%;
+}
+.profile-room-mobile-name{
+    margin-right:15%;
+    margin-top :7%;
+    float:right;
+}
 .room-list{
     width:20%;
-    height :800px;
+    height :885px;
     background: #444753;
     float:left;
 }
@@ -67,13 +78,17 @@
     width :80%;
     margin-left: 10%;
 }
+.room-mobile{
+    border-bottom: 2px solid azure;
+}
 .search{
     padding: 20px;
 }
 .chat-list{
     width:80%;
-    height :100%;
     margin-left:20%;
+    height :885px;
+    position: absolute;
     background: #F2F5F8;
 }
 .time {
@@ -82,15 +97,14 @@
     font-size : 1pt;
     color: #B2B2B2;
 }
-.input-chat{
-    position:fixed;
-    width: 70%;
-    margin-top: 45%;
-    margin-left : 25%;
-}
 .input-chat-mobile{
      margin-top  : 50%
  }
+.input-chat{
+    position: relative;
+    border-top: 2px solid white;
+    top:430px;
+}
 @media screen and (max-width:992px) {
     .input-chat {
         margin-left  : 2%;

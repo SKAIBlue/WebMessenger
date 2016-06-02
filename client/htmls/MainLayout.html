@@ -1,8 +1,9 @@
 <template name="MainLayout">
     <nav class="blue-grey">
-        <ul id="slide-out" class="side-nav">
-            <li><a href="#!">Chat1</a></li>
-            <li><a href="#!">Chat2</a></li>
+        <ul id="slide-out" class="side-nav grey">
+            {{#each chat_room_list}}
+                {{> room_mobile}}
+            {{/each}}
         </ul>
         <a href="#!" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
         <ul class="right hide-on-med-and-down">
@@ -21,26 +22,29 @@
             {{> room}}
         {{/each}}
     </div>
+
     <!-- 채팅내용 리스트 목록 div-->
     <div class="chat-list">
-        <div class="chat row">
+        <div class="row">
             {{#each chat_list}}
                 {{>chat}}
             {{/each}}
         </div>
-    </div>
-    <div class="chat-message clearfix">
-        <textarea name="message-to-send" id="message-to-send" placeholder ="메세지를 입력하세요." rows="3"></textarea>
-        <a><i class="material-icons">attachment</i></a>
-        <a class="waves-effect waves-light tooltipped send-chat-btn" data-position="top" data-delay="50"
-           data-tooltip="전송"><i class="material-icons">send</i></a>
+        <div class="input-chat" >
+            <input placeholder ="메세지를 입력하세요.">
+            <a><i class="waves-effect waves-light material-icons">attachment</i></a>
+            <a class="waves-effect waves-light tooltipped" data-position="top" data-delay="50"
+               data-tooltip="전송"><i class="material-icons">send</i></a>
+        </div>
 
     </div>
+
     <!--<ul>
         <li><div class="input-chat"><input></div></li>
         <li><a class="waves-effect waves-light tooltipped send-chat-btn" data-position="top" data-delay="50"
                data-tooltip="전송"><i class="material-icons">send</i></a></li>
     </ul>-->
+
        <script>
         $(document).ready(function () {
             $(".button-collapse").sideNav();
