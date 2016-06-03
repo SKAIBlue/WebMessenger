@@ -1,31 +1,54 @@
 <template name="MainLayout">
     <nav class="blue-grey">
-        <ul id="slide-out" class="side-nav grey">
-            {{#each chat_room_list}}
-                {{> room_mobile}}
-            {{/each}}
-        </ul>
         <a href="#!" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="#!"><i id="create-room" class="material-icons left tooltipped" data-position="bottom" data-delay="50"
-                                data-tooltip="대화 시작">add</i></a></li>
-            <li>{{> loginButtons}}</li>
+        <ul class="row hide-on-med-and-down">
+            <li class = "col s2 center"><a><h5>WebMessenger</h5></a></li>
+            <li class="col s1 offset-s8">
+                <a class="waves-effect waves-light modal-trigger center" href="#find-friend"><i class="material-icons">add</i></a>
+            </li>
+            <li class="col s1">
+                <a class='waves-effect waves-light dropdown-button' href='#' data-activates='settings-btn'><i class="material-icons center">settings</i></a>
+            </li>
         </ul>
-        <div class="right-align"></div>
     </nav>
+    <!-- 사이드 네비 for mobile size -->
+    <ul id="slide-out" class="side-nav grey">
+        {{#each chat_room_list}}
+            {{> room_mobile}}
+        {{/each}}
+    </ul>
+    <!-- 친구 찾기 창 -->
+    <div id="find-friend" class="modal find-friend">
+        <div class="modal-content">
+            <div class="search-friend">
+                <input type="text" placeholder="검색" autofocus/>
+            </div>
+        </div>
+    </div>
+
+    <!-- for 설정 버튼 드롭다운 메뉴 -->
+    <ul id='settings-btn' class='dropdown-content'>
+        <li><a href="#!">내 정보</a></li>
+        <li><a href="#!">환경설정</a></li>
+        <li class="divider"></li>
+        <li><a href="#!">로그아웃</a></li>
+    </ul>
+
     <!-- 채팅방 리스트 목록 div-->
     <div class="room-list hide-on-med-and-down">
         <div class="search">
             <input type="text" placeholder="검색" />
         </div>
-        {{#each chat_room_list}}
-            {{> room}}
-        {{/each}}
+            {{#each chat_room_list}}
+                {{> room}}
+            {{/each}}
+
+
     </div>
 
     <!-- 채팅내용 리스트 목록 div-->
     <div class="chat-list">
-        <div class="row">
+        <div class="row chat-list-inner">
             {{#each chat_list}}
                 {{>chat}}
             {{/each}}
@@ -36,7 +59,6 @@
             <a class="waves-effect waves-light tooltipped" data-position="top" data-delay="50"
                data-tooltip="전송"><i class="material-icons">send</i></a>
         </div>
-
     </div>
 
     <!--<ul>
@@ -47,8 +69,28 @@
 
        <script>
         $(document).ready(function () {
+            $('.chat-list-inner').scrollTop = 100; // 스크롤을 맨 아래로 땡김
             $(".button-collapse").sideNav();
+            $('.modal-trigger').leanModal();
             $('.tooltipped').tooltip({delay: 50});
+            $('.dropdown-button').dropdown({        //설정 드롭다운
+                        inDuration: 300,
+                        outDuration: 225,
+                        constrain_width: false, // Does not change width of dropdown to that of the activator
+                        hover: false, // Activate on hover
+                        gutter: 0, // Spacing from edge
+                        belowOrigin: false, // Displays dropdown below the button
+                        alignment: 'right' // Displays dropdown with edge aligned to the left of button
+                    }
+            );
+            $('.new-con-btn').dropdown({        //새 대화 시작하기 드롭다운
+                        constrain_width: true, // Does not change width of dropdown to that of the activator
+                        hover: false, // Activate on hover
+                        gutter: 50, // Spacing from edge
+                        belowOrigin: true, // Displays dropdown below the button
+                        alignment: 'left' // Displays dropdown with edge aligned to the left of button
+                    }
+            );
         });
     </script>
 </template>

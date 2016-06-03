@@ -73,11 +73,13 @@
     height :885px;
     background: #444753;
     float:left;
+    overflow-y: auto;
 }
 .room{
     width :80%;
     margin-left: 10%;
-    margin-bottom:2%;
+    margin-bottom:5%;
+    border-radius: 10px;
 }
 .room-mobile{
     border-bottom: 2px solid azure;
@@ -85,12 +87,20 @@
 .search{
     padding: 20px;
 }
+.search-friend{
+    padding: 20px;
+    color:black;
+}
 .chat-list{
     width:80%;
     margin-left:20%;
-    height :885px;
+    height :85%;
     position: absolute;
     background: #F2F5F8;
+}
+.chat-list-inner{
+    overflow-y: auto;
+    height:95%;
 }
 .time {
     float : right;
@@ -102,9 +112,17 @@
      margin-top  : 50%
  }
 .input-chat{
-    position: relative;
+    height:12%;
+    background: #F2F5F8;
     border-top: 2px solid white;
-    top:430px;
+}
+.input-chat input{
+    margin-top:0%;
+}
+.find-friend{
+    width:500px;
+    height:500px;
+    background: #444753;
 }
 @media screen and (max-width:992px) {
     .input-chat {
