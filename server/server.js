@@ -3,6 +3,14 @@
  */
 
 
-Meteor.publish('UserAddition', function tasksPublication() {
-    return UserAddition.find();
+Meteor.publish('UserAddition', function UserAdditionPublication() {
+    return UserAddition.findAll();
+});
+
+Meteor.publish('ChatRoom', function ChatRoomPublication(){
+    return ChatRoom.findAll();
+});
+
+Meteor.publish('Chat', function ChatPublication(){
+    return Chat.findAll();
 });
