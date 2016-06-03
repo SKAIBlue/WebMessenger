@@ -60,6 +60,78 @@ Template.MainLayout.helpers({
             chatTime:'2016.07.07',
             isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
             position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
+        },
+        {
+            chatWho:'홍길동',
+            chatProfile:'/img/default_profile.png',
+            chatText:'반갑습니다.',
+            chatTime:'2016.07.07',
+            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
+            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
+        },
+        {
+            chatWho:'홍길동',
+            chatProfile:'/img/default_profile.png',
+            chatText:'반갑습니다.',
+            chatTime:'2016.07.07',
+            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
+            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
+        },
+        {
+            chatWho:'홍길동',
+            chatProfile:'/img/default_profile.png',
+            chatText:'반갑습니다.',
+            chatTime:'2016.07.07',
+            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
+            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
+        },
+        {
+            chatWho:'홍길동',
+            chatProfile:'/img/default_profile.png',
+            chatText:'반갑습니다.',
+            chatTime:'2016.07.07',
+            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
+            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
+        },
+        {
+            chatWho:'홍길동',
+            chatProfile:'/img/default_profile.png',
+            chatText:'반갑습니다.',
+            chatTime:'2016.07.07',
+            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
+            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
+        },
+        {
+            chatWho:'홍길동',
+            chatProfile:'/img/default_profile.png',
+            chatText:'반갑습니다.',
+            chatTime:'2016.07.07',
+            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
+            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
+        },
+        {
+            chatWho:'홍길동',
+            chatProfile:'/img/default_profile.png',
+            chatText:'반갑습니다.',
+            chatTime:'2016.07.07',
+            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
+            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
+        },
+        {
+            chatWho:'홍길동',
+            chatProfile:'/img/default_profile.png',
+            chatText:'반갑습니다.',
+            chatTime:'2016.07.07',
+            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
+            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
+        },
+        {
+            chatWho:'홍길동',
+            chatProfile:'/img/default_profile.png',
+            chatText:'반갑습니다.',
+            chatTime:'2016.07.07',
+            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
+            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
         }
     ]
 });
