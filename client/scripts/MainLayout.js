@@ -47,6 +47,7 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated()
     Meteor.subscribe('ChatRoom');
     Meteor.subscribe('Chat');
     // 데이터베이스에 생성된 추가 데이터가 있는지 검사
+    Session.setDefault("selectedChatRoom","");
     Meteor.call("UserAddition.findOne",Meteor.userId(), function(err, result)
     {
         if(result)
@@ -65,13 +66,16 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated()
 });
 
 Template.MainLayout.helpers({
+    friend_list()
+    {
+
+    },
     chat_room_list()
     {
         var addition = UserAddition.findOne({userId:Session.get("userId")});
         console.log(addition);
         var myChatRoom = addition.chatRoomList;
         var chatRoom = [];
-        console.log(myChatRoom.length);
         for(var i = 0 ; i < myChatRoom.length ; ++i)
         {
             var roomId = myChatRoom[i];
@@ -85,107 +89,29 @@ Template.MainLayout.helpers({
         }
         return chatRoom;
     },
-    chat_list:[
+    chat_list(){
+        var selectedChatRoom = Session.get("selectedChatRoom");
+        var chat = Chat.find({roomId:selectedChatRoom});
+        return chat;
+        var result = [];
+        for(var d in chat)
         {
-            chatWho:'김태훈',
-            chatProfile:'/img/default_profile.png',
-            chatText:'안녕하세요.',
-            chatTime:'2016.07.07',
-            isMy : false, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
-            position : "me" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
-        },
-        {
-            chatWho:'김태훈',
-            chatProfile:'/img/default_profile.png',
-            chatText:'반갑습니다.',
-            chatTime:'2016.07.07',
-            isMy : false, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
-            position : "me" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
-        },
-        {
-            chatWho:'홍길동',
-            chatProfile:'/img/default_profile.png',
-            chatText:'반갑습니다.',
-            chatTime:'2016.07.07',
-            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
-            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
-        },
-        {
-            chatWho:'홍길동',
-            chatProfile:'/img/default_profile.png',
-            chatText:'반갑습니다.',
-            chatTime:'2016.07.07',
-            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
-            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
-        },
-        {
-            chatWho:'홍길동',
-            chatProfile:'/img/default_profile.png',
-            chatText:'반갑습니다.',
-            chatTime:'2016.07.07',
-            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
-            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
-        },
-        {
-            chatWho:'홍길동',
-            chatProfile:'/img/default_profile.png',
-            chatText:'반갑습니다.',
-            chatTime:'2016.07.07',
-            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
-            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
-        },
-        {
-            chatWho:'홍길동',
-            chatProfile:'/img/default_profile.png',
-            chatText:'반갑습니다.',
-            chatTime:'2016.07.07',
-            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
-            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
-        },
-        {
-            chatWho:'홍길동',
-            chatProfile:'/img/default_profile.png',
-            chatText:'반갑습니다.',
-            chatTime:'2016.07.07',
-            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
-            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
-        },
-        {
-            chatWho:'홍길동',
-            chatProfile:'/img/default_profile.png',
-            chatText:'반갑습니다.',
-            chatTime:'2016.07.07',
-            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
-            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
-        },
-        {
-            chatWho:'홍길동',
-            chatProfile:'/img/default_profile.png',
-            chatText:'반갑습니다.',
-            chatTime:'2016.07.07',
-            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
-            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
-        },
-        {
-            chatWho:'홍길동',
-            chatProfile:'/img/default_profile.png',
-            chatText:'반갑습니다.',
-            chatTime:'2016.07.07',
-            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
-            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
-        },
-        {
-            chatWho:'홍길동',
-            chatProfile:'/img/default_profile.png',
-            chatText:'반갑습니다.',
-            chatTime:'2016.07.07',
-            isMy : true, // TODO 쿼리 결과에 따른 함수 정의 필요 return true or false
-            position : "you" // TODO 쿼리 결과에 따른 함수 정의 필요 return string me or you
+            result.push({
+                chatWho:d.chatWho,
+                chatProfile:d.chatProfile,
+                chatText:d.chatText,
+                chatTime:d.chatTime,
+                isMy(){
+                    return Meteor.userId == d.chatWho;
+                },
+                position(){
+                    return (this.isMy()) ? "me":"you";
+                }
+            });
         }
-    ]
+
+    }
 });
-
-
 
 Template.MainLayout.events({
     'click #create-room'()
@@ -195,6 +121,44 @@ Template.MainLayout.events({
             console.log(Session.get("userId"));
             Meteor.call('ChatRoom.addUser',docInserted, Session.get("userId"));
         });
+    },
+    'submit .input-form'(event)
+    {
+        event.preventDefault();
+        var target = event.target;
+        var text = target.text.value;
+        sendMessage(text);
+        target.text.value = "";
+    },
+    'click .send-button-form'()
+    {
+        var input = document.getElementById('input-message');
+        var text = input.value;
+        sendMessage(text);
+        input.value = "";
     }
 })
 
+function sendMessage(message)
+{
+    if(message.length == 0)
+    {
+        return;
+    }
+
+    var selectedChatRoom = Session.get("selectedChatRoom");
+    if(selectedChatRoom.length == 0)
+    {
+        console.log("not select chat room");
+        return;
+    }
+    // 채팅 내용 저장
+    Chat.insert({
+        chatUserId: Session.get("userId"),
+        chatRoomId: selectedChatRoom,
+        chatText:message,
+        chatTime:new Date(),
+        isFile:false
+    });
+
+}

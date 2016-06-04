@@ -22,6 +22,9 @@
         <div class="modal-content">
             <div class="search-friend">
                 <input type="text" placeholder="검색" autofocus/>
+                {{#each friend_list}}
+                    {{>FriendList}}
+                {{/each}}
             </div>
         </div>
     </div>
@@ -54,10 +57,14 @@
             {{/each}}
         </div>
         <div class="input-chat" >
-            <input placeholder ="메세지를 입력하세요.">
+            <form class="input-form">
+                <input id='input-message' class="input-message" name="text" placeholder ="메세지를 입력하세요.">
+            </form>
             <a><i class="waves-effect waves-light material-icons">attachment</i></a>
-            <a class="waves-effect waves-light tooltipped" data-position="top" data-delay="50"
-               data-tooltip="전송"><i class="material-icons">send</i></a>
+            <from class="send-button-form">
+                <a id="send-button" class="waves-effect waves-light tooltipped" data-position="top" data-delay="50"
+                   data-tooltip="전송"><i class="material-icons">send</i></a>
+            </from>
         </div>
     </div>
 
