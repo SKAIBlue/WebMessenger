@@ -1,0 +1,13 @@
+<template name="chat">
+    <p class="col s12">
+        {{#if isMy}}
+            <img src="{{chatProfile}}" class="circle profile-chat you">{{chatWho}}<br>
+        {{/if}}
+    {{#if isFile}}
+        
+    {{/if}}
+        <div class="bubble {{position}}">{{chatText}}<br>
+            <div class="time">{{chatTime}}</div>
+        </div>
+    </p>
+</template>

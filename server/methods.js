@@ -5,14 +5,6 @@
 
 Meteor.methods({
     /**
-     * 미티어 메소드의 형식입니다
-     * @param parameters 매개 변수
-     */
-    name: function( parameters )
-    {
-
-    },
-    /**
      * 새 유저 추가 정보를 추가합니다
      * @param id users 컬렉션의 _id
      */
@@ -29,9 +21,9 @@ Meteor.methods({
 
     },
     /**
-     *
-     * @param email
-     * @param callback
+     * emil을 이용해 유저를 검색합니다
+     * @param email 이메일
+     * @param callback 콜백
      * @returns {*}
      */
     'UserAddition.find'(email, callback)
@@ -41,28 +33,38 @@ Meteor.methods({
         return Meteor.users.find({emails:{$elemMatch:{address:{$regex:regEx}}}}, callback);
     },
     /**
-     *
-     * @param id
-     * @param callback
+     * 유저 추가 정보를 찾습니다
+     * @param id id
+     * @param callback 콜백
      * @returns {*|316|776|137}
      */
     'UserAddition.findOne'(id,callback)
     {
         return UserAddition.findOne({userId:id}, callback);
     },
-    
-    'DeleteFile'(_id)
+    /**
+     * 새로운 방을 생성합니다
+     * @param callback 콜백, 여기서 데이터 처리
+     */
+    'ChatRoom.createRoom'(callback)
     {
-        check(_id, String);
-        
-        var upload = Uploads.findOne(_id);
-        if(upload == null)
-        {
-            throw new Meteor.Error(404, 'Upload not found');
-        }
-        
-        Uploads.remove(_id);
-        UploadServer.delete(upload.path);
+        return ChatRoom.insert({ whoIn:[]}, callback);
+    },
+    /**
+     * 채팅방에 사용자를 추가합니다.
+     * @param userId
+     */
+    'ChatRoom.addUser'(roomId, userId)
+    {
+        UserAddition.update({userId:userId},{$push:{chatRoomList:roomId}});
+        ChatRoom.update(roomId, {$push:{whoIn:userId}});
+        var re = ChatRoom.findOne({_id:roomId});
+        console.log(re);
+        re.whoIn.push("eeee");
+    },
+    'ChatRoom.findOne'(roomId, callback)
+    {
+        return ChatRoom.findOne({_id:roomId}, callback);
     }
 });
 

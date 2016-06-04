@@ -1,17 +1,57 @@
 /**
  * Created by kth on 16. 5. 23.
  */
-// TODO  1. Main 페이지에서 만약,닉네임이 없다면 닉네임을 정하도록 하는 화면 띄우기
+import { Template } from 'meteor/templating';
+
+function buildRoomName(roomId)
+{
+    var chatRoom = ChatRoom.findOne({_id:roomId});
+    var whoIn = chatRoom.whoIn;
+
+    if(whoIn.length== 1)
+    {
+        // 혼자 있는 경우
+        return "대화 상대 없음";
+    }
+    else if(chatRoom.chatRoomName.length == 0)
+    {
+        // 방 제목을 설정하지 않은 경우
+        if(whoIn.length == 2)
+        {
+            if(whoIn[0] == Session.get("userId"))
+            {
+                return whoIn[1] + " 님과의 대화"
+             }
+            else
+            {
+                return whoIn[0] + " 님과의 대화"
+            }
+        }
+        else
+        {
+            return "제목 없는 그룹 대화";
+        }
+    }
+    return chatRoom.chatRoomName;
+}
+
+function getRoomImage(roomId)
+{
+    return "img/default_profile.png";
+}
 
 Template.MainLayout.onCreated(function MainLayoutOnCreated()
 {
+    // 구독
     Meteor.subscribe('UserAddition');
+    Meteor.subscribe('ChatRoom');
+    Meteor.subscribe('Chat');
     // 데이터베이스에 생성된 추가 데이터가 있는지 검사
+    Session.setDefault("selectedChatRoom","");
     Meteor.call("UserAddition.findOne",Meteor.userId(), function(err, result)
     {
         if(result)
         {
-            // 결과가 있을 경우
             Session.setDefault("userId", result.userId);
             Session.setDefault("nickName", result.nickName);
         }
@@ -26,23 +66,99 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated()
 });
 
 Template.MainLayout.helpers({
-    'ChatList'(){
-        return[{
-            chat_profile:"/img/default_profile.png",
-            chat_text:"안녕하세요안녕하세요",
-            chat_date:"2016.12.01",
-            isMyChat:true
-        },{
-            chat_profile:"/img/default_profile.png",
-            chat_text:"안녕하세요안녕하세요22222222222",
-            chat_date:"2016.12.01",
-            isMyChat:false
+    friend_list()
+    {
+
+    },
+    chat_room_list()
+    {
+        var addition = UserAddition.findOne({userId:Session.get("userId")});
+        console.log(addition);
+        var myChatRoom = addition.chatRoomList;
+        var chatRoom = [];
+        for(var i = 0 ; i < myChatRoom.length ; ++i)
+        {
+            var roomId = myChatRoom[i];
+            ChatRoom.findOne(roomId);
+            console.log(roomId);
+            chatRoom.push({
+                roomId: roomId,
+                chatRoomName:buildRoomName(roomId),
+                chatRoomImage:getRoomImage(roomId)
+            });
         }
-        ];
+        return chatRoom;
+    },
+    chat_list(){
+        var selectedChatRoom = Session.get("selectedChatRoom");
+        var chat = Chat.find({roomId:selectedChatRoom});
+        return chat;
+        var result = [];
+        for(var d in chat)
+        {
+            result.push({
+                chatWho:d.chatWho,
+                chatProfile:d.chatProfile,
+                chatText:d.chatText,
+                chatTime:d.chatTime,
+                isMy(){
+                    return Meteor.userId == d.chatWho;
+                },
+                position(){
+                    return (this.isMy()) ? "me":"you";
+                }
+            });
+        }
+
     }
 });
 
 Template.MainLayout.events({
-
+    'click #create-room'()
+    {
+        console.log('새로운 방 생성');
+        Meteor.call('ChatRoom.createRoom',function(err, docInserted){
+            console.log(Session.get("userId"));
+            Meteor.call('ChatRoom.addUser',docInserted, Session.get("userId"));
+        });
+    },
+    'submit .input-form'(event)
+    {
+        event.preventDefault();
+        var target = event.target;
+        var text = target.text.value;
+        sendMessage(text);
+        target.text.value = "";
+    },
+    'click .send-button-form'()
+    {
+        var input = document.getElementById('input-message');
+        var text = input.value;
+        sendMessage(text);
+        input.value = "";
+    }
 })
 
+function sendMessage(message)
+{
+    if(message.length == 0)
+    {
+        return;
+    }
+
+    var selectedChatRoom = Session.get("selectedChatRoom");
+    if(selectedChatRoom.length == 0)
+    {
+        console.log("not select chat room");
+        return;
+    }
+    // 채팅 내용 저장
+    Chat.insert({
+        chatUserId: Session.get("userId"),
+        chatRoomId: selectedChatRoom,
+        chatText:message,
+        chatTime:new Date(),
+        isFile:false
+    });
+
+}

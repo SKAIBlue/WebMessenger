@@ -1,7 +1,5 @@
 /* CSS declarations go here */
-.chat {
-    width: 100%;
-}
+
 
 .bubble{
     background-color: #F2F2F2;
@@ -30,29 +28,79 @@
     width:  20px;
 }
 
-.me {
+.you {
+    right:10px;
     float: left;
-    margin: 5px 45px 5px 20px;
+    margin: 5px 9px 10px 20px;
 }
 
-.me::before {
+.you::before {
     box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
     left: -9px;
 }
-.you {
+
+.me {
     float: right;
-    margin: 5px 45px 5px 20px;
+    margin: 5px 8px 10px 20px;
 }
-.you::before {
+.me::before {
     box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
     right: -9px;
 }
+.profile-chat {
+    height:32px;
+    width: 32px;
+    font-size: 8pt;
+    margin-left:0%;
+}
+.profile-room {
+    height:64px;
+    width: 64px;
+    align:center;
+}
+.profile-room-mobile {
+    height:50px;
+    width: 50px;
+    margin-top:10%;
+}
+.profile-room-mobile-name{
+    margin-right:15%;
+    margin-top :7%;
+    float:right;
+}
 .room-list{
-    margin-right:80%;
-
+    width:20%;
+    height :885px;
+    background: #444753;
+    float:left;
+    overflow-y: auto;
+}
+.room{
+    width :80%;
+    margin-left: 10%;
+    margin-bottom:5%;
+    border-radius: 10px;
+}
+.room-mobile{
+    border-bottom: 2px solid azure;
+}
+.search{
+    padding: 20px;
+}
+.search-friend{
+    padding: 20px;
+    color:black;
 }
 .chat-list{
-    margin-left:25%;
+    width:80%;
+    margin-left:20%;
+    height :85%;
+    position: absolute;
+    background: #F2F5F8;
+}
+.chat-list-inner{
+    overflow-y: auto;
+    height:95%;
 }
 .time {
     float : right;
@@ -60,11 +108,31 @@
     font-size : 1pt;
     color: #B2B2B2;
 }
-.input-chat{
-    margin-left : 30%;
-    margin-top  : 50%;
-    margin-right :5%;
-}
 .input-chat-mobile{
      margin-top  : 50%
  }
+.input-chat{
+    height:12%;
+    background: #F2F5F8;
+    border-top: 2px solid white;
+}
+.input-chat input{
+    margin-top:0%;
+}
+.find-friend{
+    width:500px;
+    height:500px;
+    background: #444753;
+}
+@media screen and (max-width:992px) {
+    .input-chat {
+        margin-left  : 2%;
+        margin-right :1%;
+        margin-bottom  : 0%;
+    }
+    .chat-list{
+        width:100%;
+        height :100%;
+        margin-left:0%;
+    }
+}
