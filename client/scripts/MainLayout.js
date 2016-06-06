@@ -40,8 +40,15 @@ function getRoomImage(roomId)
     return "img/default_profile.png";
 }
 
+Template.ChooseImage.rendered = function()
+{
+    Uploader.render.call(this);
+}
+
 Template.MainLayout.onCreated(function MainLayoutOnCreated()
 {
+    // 파일 업로더 초기화
+    Uploader.init(this);
     // 구독
     Meteor.subscribe('UserAddition');
     Meteor.subscribe('ChatRoom');
@@ -136,6 +143,11 @@ Template.MainLayout.events({
         var text = input.value;
         sendMessage(text);
         input.value = "";
+    },
+    'change .send-file-button-form'()
+    {
+        console.log("File upload!");
+        var instance = Template.instance();
     }
 })
 

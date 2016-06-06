@@ -60,13 +60,17 @@
             <form class="input-form">
                 <input id='input-message' class="input-message" name="text" placeholder ="메세지를 입력하세요.">
             </form>
-            <a><i class="waves-effect waves-light material-icons">attachment</i></a>
+            <form class="send-file-button-form" id="choose-file-form" method="POST" enctype="multipart/form-data" onclick="document.getElementById('choose-file').click()">
+                <a><i class="waves-effect waves-light material-icons">attachment</i></a>
+                <input type='file' id='choose-file' name='file' class="jqUploadclass" accept='' data-form-data='{{submitData}}' onchange="readURL(this,'#uploaded-image')"/>
+            </form>
             <from class="send-button-form">
                 <a id="send-button" class="waves-effect waves-light tooltipped" data-position="top" data-delay="50"
                    data-tooltip="전송"><i class="material-icons">send</i></a>
             </from>
         </div>
         {{> InvisibleImageDropZone}}
+        <!-- class 이름을 start 로 한다면 클릭 했을 때 선택된 파일을 업로드 할 것 입니다-->
     </div>
 
     <!--<ul>
