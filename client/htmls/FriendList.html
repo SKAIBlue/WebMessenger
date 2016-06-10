@@ -1,5 +1,24 @@
 <!-- 친구 찾기 버튼을 누르면 등장하는 창에 뿌려질 친구 목록 리스트용 탬플릿-->
-
 <template name="FriendList">
+    <div id ="myfriend" onclick="close_friend_list()"> <!-- 친구 -->
+        <a class="black-text">
+            <div class="grey lighten-1 white-text room hoverable tooltipped" data-position="right" data-delay="50"
+                 data-tooltip="{{friend_name}}">
+                <div class="valign-wrapper">
+                    <div class="profile-room">
+                        <img src="{{friend_img}}" class="circle responsive-img">
+                    </div>
+                    <div>
+                        <h6 id="friend_name">김태훈</h6>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
 
+    <script>
+        function close_friend_list(){
+            $('#find-friend').closeModal(); // close friend list
+        }
+    </script>
 </template>

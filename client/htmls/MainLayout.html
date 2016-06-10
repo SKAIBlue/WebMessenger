@@ -28,7 +28,6 @@
             </div>
         </div>
     </div>
-
     <!-- for 설정 버튼 드롭다운 메뉴 -->
     <ul id='settings-btn' class='dropdown-content'>
         <li><a href="#!">내 정보</a></li>
@@ -42,13 +41,10 @@
         <div class="search">
             <input type="text" placeholder="검색" />
         </div>
-            {{#each chat_room_list}}
-                {{> room}}
-            {{/each}}
-
-
+        {{#each chat_room_list}}
+            {{> room}}
+        {{/each}}
     </div>
-
     <!-- 채팅내용 리스트 목록 div-->
     <div class="chat-list">
         <div class="row chat-list-inner">
@@ -56,7 +52,7 @@
                 {{>chat}}
             {{/each}}
         </div>
-        <div class="input-chat" >
+        <div class="input-chat">
             <form class="input-form">
                 <input id='input-message' class="input-message" name="text" placeholder ="메세지를 입력하세요.">
             </form>
@@ -74,7 +70,6 @@
         <li><a class="waves-effect waves-light tooltipped send-chat-btn" data-position="top" data-delay="50"
                data-tooltip="전송"><i class="material-icons">send</i></a></li>
     </ul>-->
-
        <script>
         $(document).ready(function () {
             $('.chat-list-inner').scrollTop = 100; // 스크롤을 맨 아래로 땡김
