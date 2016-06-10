@@ -40,15 +40,8 @@ function getRoomImage(roomId)
     return "img/default_profile.png";
 }
 
-Template.ChooseImage.rendered = function()
-{
-    Uploader.render.call(this);
-}
-
 Template.MainLayout.onCreated(function MainLayoutOnCreated()
 {
-    // 파일 업로더 초기화
-    Uploader.init(this);
     // 구독
     Meteor.subscribe('UserAddition');
     Meteor.subscribe('ChatRoom');
@@ -123,10 +116,6 @@ Template.MainLayout.helpers({
 });
 
 Template.MainLayout.events({
-    'click .logout-button'()
-    {
-        Meteor.logout();
-    },
     'click #create-room'()
     {
         console.log('새로운 방 생성');
@@ -137,26 +126,18 @@ Template.MainLayout.events({
     },
     'submit .input-form'(event)
     {
-        console.log(event.keyCode);
         event.preventDefault();
         var target = event.target;
         var text = target.text.value;
         sendMessage(text);
         target.text.value = "";
     },
-    'click #send-button'()
+    'click .send-button-form'()
     {
         var input = document.getElementById('input-message');
         var text = input.value;
         sendMessage(text);
-        console.log("ddd");
         input.value = "";
-    },
-    'change .send-file-button-form'(e)
-    {
-        console.log("File upload!");
-        var instance = Template.instance();
-        Uploader.upload(instance, e);
     }
 })
 

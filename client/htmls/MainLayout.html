@@ -3,8 +3,13 @@
         <a href="#!" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
         <ul class="row hide-on-med-and-down">
             <li class="col s2 center"><a><h5>WebMessenger</h5></a></li>
-            <li class="col s1 offset-s8">
-                <a class="waves-effect waves-light modal-trigger center" href="#find-friend"><i class="material-icons">add</i></a>
+            <li class="col s1 offset-s7" onclick="open_add_friend()">
+                <a class="waves-effect waves-light modal-trigger center tooltipped" data-position="down" data-delay="50"
+                   href="#find-friend" data-tooltip="친구 추가"><i class="material-icons">face</i></a>
+            </li>
+            <li class="col s1" onclick="open_find_friend()">
+                <a class="waves-effect waves-light modal-trigger center tooltipped" data-position="down" data-delay="50"
+                   href="#find-friend" data-tooltip="새 대화 추가"><i class="material-icons">add</i></a>
             </li>
             <li class="col s1">
                 <a class='waves-effect waves-light dropdown-button' href='#' data-activates='settings-btn'><i
@@ -29,19 +34,21 @@
             </div>
         </div>
     </div>
-
+    <!-- 친구 추가 창 -->
+    <div id="add-friend" class="modal add-friend">
+        <div class="modal-content">
+            <div class="search-friend">
+                <input type="text" placeholder="이메일 또는 닉네임을 입력하세요." autofocus/>
+            </div>
+        </div>
+    </div>
     <!-- for 설정 버튼 드롭다운 메뉴 -->
     <ul id='settings-btn' class='dropdown-content'>
         <li><a href="#!">내 정보</a></li>
         <li><a href="#!">환경설정</a></li>
         <li class="divider"></li>
-        <form class="logout-button">
-            <li>
-                <a href="#!">로그아웃</a>
-            </li>
-        </form>
+        <li><a href="#!">로그아웃</a></li>
     </ul>
-
     <!-- 채팅방 리스트 목록 div-->
     <div class="room-list hide-on-med-and-down">
         <div class="search">
@@ -51,7 +58,6 @@
             {{> room}}
         {{/each}}
     </div>
-
     <!-- 채팅내용 리스트 목록 div-->
     <div class="chat-list">
         <div class="row chat-list-inner">
@@ -61,35 +67,21 @@
         </div>
         <div class="input-chat">
             <form class="input-form">
-                <input id='input-message' class="input-message" name="text" placeholder="메세지를 입력하세요.">
+                <input id='input-message' class="input-message" name="text" autocomplete="off"
+                       placeholder="메세지를 입력하세요.">
             </form>
-            <form class="send-file-button-form" id="choose-file-form" method="POST" enctype="multipart/form-data"
-                  onclick="document.getElementById('choose-file').click()">
-                <a><i class="waves-effect waves-light material-icons">attachment</i></a>
-                <input type='file' id='choose-file' name='file' class="jqUploadclass" accept=''
-                       data-form-data='{{submitData}}' onchange="readURL(this,'#uploaded-image')"/>
-            </form>
+            <a><i class="waves-effect waves-light material-icons" onclick="fileupload()">attachment</i></a>
             <from class="send-button-form">
-
                 <a id="send-button" class="waves-effect waves-light tooltipped" data-position="top" data-delay="50"
                    data-tooltip="전송"><i class="material-icons">send</i></a>
             </from>
         </div>
         {{> InvisibleImageDropZone}}
-        <!-- class 이름을 start 로 한다면 클릭 했을 때 선택된 파일을 업로드 할 것 입니다-->
     </div>
-
-    <!--<ul>
-        <li><div class="input-chat"><input></div></li>
-        <li><a class="waves-effect waves-light tooltipped send-chat-btn" data-position="top" data-delay="50"
-               data-tooltip="전송"><i class="material-icons">send</i></a></li>
-    </ul>-->
-
     <script>
         $(document).ready(function () {
             $('.chat-list-inner').scrollTop = 100; // 스크롤을 맨 아래로 땡김
             $(".button-collapse").sideNav();
-            $('.modal-trigger').leanModal();
             $('.tooltipped').tooltip({delay: 50});
             $('.dropdown-button').dropdown({        //설정 드롭다운
                         inDuration: 300,
@@ -101,7 +93,7 @@
                         alignment: 'right' // Displays dropdown with edge aligned to the left of button
                     }
             );
-            $('.new-con-btn').dropdown({        //새 대화 시작하기 드롭다운
+            $('.new-con-btn').dropdown({        //새 대화 시작하기 드롭다운 !
                         constrain_width: true, // Does not change width of dropdown to that of the activator
                         hover: false, // Activate on hover
                         gutter: 50, // Spacing from edge
@@ -110,5 +102,7 @@
                     }
             );
         });
+        function open_find_friend() {$('#find-friend').openModal();}
+        function open_add_friend() {$('#add-friend').openModal();}
     </script>
 </template>

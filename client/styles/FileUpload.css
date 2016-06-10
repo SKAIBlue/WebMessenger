@@ -57,11 +57,3 @@ div.upload input {
     opacity: 0 !important;
     overflow: hidden !important;
 }
-
-.send-file-button-form input{
-    display: block !important;
-    width: 0px !important;
-    height: 0px !important;
-    opacity: 0 !important;
-    overflow: hidden !important;
-}
