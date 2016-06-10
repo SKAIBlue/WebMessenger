@@ -70,9 +70,9 @@
                 <input id='input-message' class="input-message" name="text" autocomplete="off"
                        placeholder="메세지를 입력하세요.">
             </form>
-            <from class="send-button-form col s1 btn" style ="margin-top: 9px">
-                <a id="send-button" class="waves-effect waves-light white-text tooltipped" data-position="top" data-delay="50"
-                   data-tooltip="전송">전송</a>
+            <from class="send-button-form col s1 btn tooltipped" data-position="top" data-delay="50"
+            data-tooltip="전송">
+                <a id="send-button" class="waves-effect waves-light white-text " >전송</a>
             </from>
             <form class="send-file-button-form col s12" id="choose-file-form" method="POST" enctype="multipart/form-data"
                   onclick="document.getElementById('choose-file').click()">
@@ -81,7 +81,6 @@
                        data-form-data='{{submitData}}' onchange="readURL(this,'#uploaded-image')"/>
             </form>
         </div>
-
         {{> InvisibleImageDropZone}}
     </div>
     <script>

@@ -116,6 +116,9 @@
     background: #F2F5F8;
     border-top: 2px solid white;
 }
+.input-chat .btn{
+    margin-top: 9px;
+}
 .input-chat input{
     margin-top:0%;
 }
