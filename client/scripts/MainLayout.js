@@ -137,17 +137,19 @@ Template.MainLayout.events({
         sendMessage(text);
         target.text.value = "";
     },
-    'click .send-button-form'()
+    'click #send-button'()
     {
         var input = document.getElementById('input-message');
         var text = input.value;
         sendMessage(text);
+        console.log("ddd");
         input.value = "";
     },
-    'change .send-file-button-form'()
+    'change .send-file-button-form'(e)
     {
         console.log("File upload!");
         var instance = Template.instance();
+        Uploader.upload(instance, e);
     }
 })
 

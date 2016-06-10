@@ -63,8 +63,8 @@
             <form class="send-file-button-form" id="choose-file-form" method="POST" enctype="multipart/form-data" onclick="document.getElementById('choose-file').click()">
                 <a><i class="waves-effect waves-light material-icons">attachment</i></a>
                 <input type='file' id='choose-file' name='file' class="jqUploadclass" accept='' data-form-data='{{submitData}}' onchange="readURL(this,'#uploaded-image')"/>
-            </form>
-            <from class="send-button-form">
+            </form><from class="send-button-form">
+
                 <a id="send-button" class="waves-effect waves-light tooltipped" data-position="top" data-delay="50"
                    data-tooltip="전송"><i class="material-icons">send</i></a>
             </from>
