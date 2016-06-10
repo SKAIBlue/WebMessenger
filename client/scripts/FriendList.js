@@ -9,11 +9,5 @@ Template.FriendList.events({
 });
 
 Template.FriendList.helpers({
-    friend_list()
-    {
-        return [{
-            friend_name : "김태훈",
-            friend_img : "img/default_profile.png"
-        }];
-    }
+
 })

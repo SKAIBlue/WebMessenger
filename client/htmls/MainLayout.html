@@ -2,15 +2,18 @@
     <nav class="blue-grey">
         <a href="#!" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
         <ul class="row hide-on-med-and-down">
-            <li class = "col s2 center"><a><h5>WebMessenger</h5></a></li>
-            <li class = "col s1 offset-s7" onclick="open_add_friend()">
-                <a class="waves-effect waves-light modal-trigger center tooltipped" data-position="down" data-delay="50" href="#find-friend" data-tooltip="친구 추가"><i class="material-icons">face</i></a>
+            <li class="col s2 center"><a><h5>WebMessenger</h5></a></li>
+            <li class="col s1 offset-s7" onclick="open_add_friend()">
+                <a class="waves-effect waves-light modal-trigger center tooltipped" data-position="down" data-delay="50"
+                   href="#find-friend" data-tooltip="친구 추가"><i class="material-icons">face</i></a>
             </li>
             <li class="col s1" onclick="open_find_friend()">
-                <a class="waves-effect waves-light modal-trigger center tooltipped" data-position="down" data-delay="50" href="#find-friend" data-tooltip="새 대화 추가"><i class="material-icons">add</i></a>
+                <a class="waves-effect waves-light modal-trigger center tooltipped" data-position="down" data-delay="50"
+                   href="#find-friend" data-tooltip="새 대화 추가"><i class="material-icons">add</i></a>
             </li>
             <li class="col s1">
-                <a class='waves-effect waves-light dropdown-button' href='#' data-activates='settings-btn'><i class="material-icons center">settings</i></a>
+                <a class='waves-effect waves-light dropdown-button' href='#' data-activates='settings-btn'><i
+                        class="material-icons center">settings</i></a>
             </li>
         </ul>
     </nav>
@@ -49,7 +52,7 @@
     <!-- 채팅방 리스트 목록 div-->
     <div class="room-list hide-on-med-and-down">
         <div class="search">
-            <input type="text" placeholder="검색" />
+            <input type="text" placeholder="검색"/>
         </div>
         {{#each chat_room_list}}
             {{> room}}
@@ -64,9 +67,10 @@
         </div>
         <div class="input-chat">
             <form class="input-form">
-                <input id='input-message' class="input-message" name="text" placeholder ="메세지를 입력하세요.">
+                <input id='input-message' class="input-message" name="text" autocomplete="off"
+                       placeholder="메세지를 입력하세요.">
             </form>
-            <a><i class="waves-effect waves-light material-icons">attachment</i></a>
+            <a><i class="waves-effect waves-light material-icons" onclick="fileupload()">attachment</i></a>
             <from class="send-button-form">
                 <a id="send-button" class="waves-effect waves-light tooltipped" data-position="top" data-delay="50"
                    data-tooltip="전송"><i class="material-icons">send</i></a>
@@ -74,13 +78,7 @@
         </div>
         {{> InvisibleImageDropZone}}
     </div>
-
-    <!--<ul>
-        <li><div class="input-chat"><input></div></li>
-        <li><a class="waves-effect waves-light tooltipped send-chat-btn" data-position="top" data-delay="50"
-               data-tooltip="전송"><i class="material-icons">send</i></a></li>
-    </ul>-->
-       <script>
+    <script>
         $(document).ready(function () {
             $('.chat-list-inner').scrollTop = 100; // 스크롤을 맨 아래로 땡김
             $(".button-collapse").sideNav();
@@ -104,9 +102,7 @@
                     }
             );
         });
-        function open_find_friend(){$('#find-friend').openModal();}
-        function open_add_friend(){$('#add-friend').openModal();}
-
-
+        function open_find_friend() {$('#find-friend').openModal();}
+        function open_add_friend() {$('#add-friend').openModal();}
     </script>
 </template>

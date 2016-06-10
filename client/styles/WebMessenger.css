@@ -113,6 +113,7 @@
  }
 .input-chat{
     height:12%;
+    width: 100%;
     background: #F2F5F8;
     border-top: 2px solid white;
 }

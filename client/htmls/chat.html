@@ -3,11 +3,15 @@
         {{#if isMy}}
             <img src="{{chatProfile}}" class="circle profile-chat you">{{chatWho}}<br>
         {{/if}}
-    {{#if isFile}}
-        
-    {{/if}}
-        <div class="bubble {{position}}">{{chatText}}<br>
-            <div class="time">{{chatTime}}</div>
-        </div>
+        {{#if isFile}}
+            <div class="bubble {{position}}"><img src="{{chatImg}}"><br>
+                <div class="time">{{chatTime}}</div>
+            </div>
+
+        {{else}}
+            <div class="bubble {{position}}">{{chatText}}<br>
+                <div class="time">{{chatTime}}</div>
+            </div>
+        {{/if}}
     </p>
 </template>
