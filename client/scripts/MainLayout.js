@@ -121,6 +121,10 @@ Template.MainLayout.helpers({
 });
 
 Template.MainLayout.events({
+    'click .logout-button'()
+    {
+        Meteor.logout();
+    },
     'click #create-room'()
     {
         console.log('새로운 방 생성');
@@ -131,6 +135,7 @@ Template.MainLayout.events({
     },
     'submit .input-form'(event)
     {
+        console.log(event.keyCode);
         event.preventDefault();
         var target = event.target;
         var text = target.text.value;
