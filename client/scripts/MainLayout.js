@@ -66,13 +66,6 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated()
 });
 
 Template.MainLayout.helpers({
-    friend_list()
-    {
-        return [{
-            friend_name : "김태훈",
-            friend_img : "img/default_profile.png"
-        }];
-    },
     chat_room_list()
     {
         var addition = UserAddition.findOne({userId:Session.get("userId")});

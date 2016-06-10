@@ -124,6 +124,11 @@
     height:500px;
     background: #444753;
 }
+.add-friend{
+    width:500px;
+    height:500px;
+    background: #444753;
+}
 @media screen and (max-width:992px) {
     .input-chat {
         margin-left  : 2%;
