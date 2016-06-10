@@ -109,11 +109,10 @@
     color: #B2B2B2;
 }
 .input-chat-mobile{
-     margin-top  : 50%
+    margin-top  : 50%;
  }
 .input-chat{
     height:12%;
-    width: 100%;
     background: #F2F5F8;
     border-top: 2px solid white;
 }
@@ -132,8 +131,6 @@
 }
 @media screen and (max-width:992px) {
     .input-chat {
-        margin-left  : 2%;
-        margin-right :1%;
         margin-bottom  : 0%;
     }
     .chat-list{
