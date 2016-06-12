@@ -66,11 +66,18 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated()
 });
 
 Template.MainLayout.helpers({
-    friend_list()
+    add_friend_list(){
+        return [{
+            email : "rlaxoqkd123@naver.com",    //임시
+            Profile : "img/default_profile.png",
+            nickName: "김태훈"
+        }];
+    },
+    myfriend_list()
     {
         return [{
-            friend_name : "김태훈",
-            friend_img : "img/default_profile.png"
+            friend_name : "김태훈",            //나의 친구 목록 중 이름
+            friend_img : "img/default_profile.png" // 프로필
         }];
     },
     chat_room_list()
@@ -116,6 +123,16 @@ Template.MainLayout.helpers({
 });
 
 Template.MainLayout.events({
+    'click #find_friend_list'()
+    {
+        var input_value = document.getElementById('input_add_friend').value;
+        if(!input_value) {
+            Materialize.toast('찾을 친구의 이메일이나 닉네임을 입력하세요', 2000); //토스트
+        }else{
+           //TODO 구축
+        }
+
+    },
     'click #create-room'()
     {
         console.log('새로운 방 생성');
