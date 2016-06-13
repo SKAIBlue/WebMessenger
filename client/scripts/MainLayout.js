@@ -186,7 +186,7 @@ Template.MainLayout.helpers({
 });
 
 Template.MainLayout.events({
-    'keydown .search-text-field'(e)
+    'keyup .search-text-field'(e)
     {
         Session.set(SESSION_SEARCH_KEY_WORD,e.target.value);
     },

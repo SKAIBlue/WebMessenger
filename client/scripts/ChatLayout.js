@@ -2,12 +2,6 @@
  * Created by Anonymous on 2016. 6. 13..
  */
 
-function updateDom()
-{
-    Session.set(SESSION_UPDATE, Session.get(SESSION_UPDATE) + 1);
-}
-
-
 function dateFormat(date)
 {
     var now = new Date();
@@ -42,11 +36,10 @@ function getChatList(selectedChatRoom)
             }
         });
     });
-    console.log("before update");
-    updateDom();
-    console.log("after update");
     return result;
 }
+
+
 
 function sendMessage(message)
 {
@@ -66,22 +59,15 @@ function sendMessage(message)
         chatRoomId: selectedChatRoom,
         chatText:message,
         chatTime:new Date(),
-        isFile:false
+        isFile:false,
     });
-
 }
 
 Template.ChatLayout.helpers({
     chat_list(){
         return getChatList(Session.get(SESSION_SELECTED_CHAT_ROOM));
-    },
-    update()
-    {
-        console.log("update helper");
-        return Session.get(SESSION_UPDATE);
     }
 });
-
 
 Template.ChatLayout.events({
     'submit .input-form'(event)
@@ -98,6 +84,6 @@ Template.ChatLayout.events({
         var text = input.value;
         sendMessage(text);
         input.value = "";
-    },
+    }
 });
 
