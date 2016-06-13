@@ -21,24 +21,29 @@ var FriendList = function()
 
 var SearchFriend = function( email )
 {
-    console.log("search keyword: " + email );
     if(email.length == 0)
     {
         return;
     }
     var regEx =  email + '.*';
     var results = [];
-    var users = UserAddition.find({email:{$regex:regEx}});;
-    for(var user in users)
-    {
+    var users = UserAddition.find({email:{$regex:regEx}});
+    var myAddition = UserAddition.findOne({userId:Meteor.userId()});
+    users.forEach(function(user){
+        if(myAddition.friends.indexOf(user.userId) > -1 || user.userId == Meteor.userId())
+        {
+            return;
+        }
         var friend = UserAddition.findOne({userId:user.userId});
+        var profile = friend.profile.length == 0 ? "img/default_profile.png" : friend.profile;
+        var nickName = friend.nickName.length == 0 ? friend.email : friend.nickName;
         results.push({
-            friend_id:friend.userId,
-            friend_name:friend.nickName,
-            friend_img:friend.profile
+            friendId:user.userId,
+            nickName:nickName,
+            Profile:profile,
+            email:friend.email
         });
-    }
-    console.log("result length:" + results.length) ;
+    });
     return results;
 }
 
@@ -108,17 +113,16 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated()
 });
 
 Template.MainLayout.helpers({
-    add_friend(){
+    add_friend_list(){
         return SearchFriend(Session.get("searchKeyword"))
     },
-    friend_list()
+    myfriend_list()
     {
         return FriendList();
     },
     chat_room_list()
     {
         var addition = UserAddition.findOne({userId:Session.get("userId")});
-        console.log(addition);
         var myChatRoom = addition.chatRoomList;
         var chatRoom = [];
         for(var i = 0 ; i < myChatRoom.length ; ++i)
@@ -161,16 +165,6 @@ Template.MainLayout.events({
     'keydown .search-text-field'(e)
     {
         Session.set("searchKeyword",e.target.value);
-    },
-    'click #find_friend_list'()
-    {
-        var input_value = document.getElementById('input_add_friend').value;
-        if(!input_value) {
-            Materialize.toast('찾을 친구의 이메일이나 닉네임을 입력하세요', 2000); //토스트
-        }else{
-            //TODO 구축
-        }
-
     },
     'click #create-room'()
     {

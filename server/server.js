@@ -4,13 +4,13 @@
 
 
 Meteor.publish('UserAddition', function UserAdditionPublication() {
-    return UserAddition.findAll();
+    return UserAddition.find();
 });
 
 Meteor.publish('ChatRoom', function ChatRoomPublication(){
-    return ChatRoom.findAll();
+    return ChatRoom.find();
 });
 
 Meteor.publish('Chat', function ChatPublication(){
-    return Chat.findAll();
+    return Chat.find();
 });
