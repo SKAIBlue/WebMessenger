@@ -58,6 +58,11 @@
     width: 64px;
     align:center;
 }
+.profile-info{
+    height:128px;
+    width: 128px;
+    align:center;
+}
 .profile-room-mobile {
     height:50px;
     width: 50px;
@@ -138,6 +143,18 @@
     height:90%;
     overflow: auto;
 }
+.my-info{
+    width:500px;
+    height:500px;
+    background: #444753;
+    overflow:hidden;
+}
+.my-info-box{
+}
+.separate-line{
+    margin-top: 2px;
+    border-top: 2px solid teal;
+}
 #add_selected_friends{
     margin-left:80%;
 }
@@ -147,6 +164,7 @@
     bottom: 10%;
     left:40%;
 }
+
 @media screen and (max-width:992px) {
     .input-chat {
         margin-bottom  : 0%;

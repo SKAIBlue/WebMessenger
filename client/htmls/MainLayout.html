@@ -23,6 +23,7 @@
             {{> room_mobile}}
         {{/each}}
     </ul>
+    {{>MyInfo}}
     <!-- 친구 찾기 창 -->
     <div id="find-friend" class="modal find-friend">
         <div class="modal-content">
@@ -51,7 +52,7 @@
     </div>
     <!-- for 설정 버튼 드롭다운 메뉴 -->
     <ul id='settings-btn' class='dropdown-content'>
-        <li><a href="#!">내 정보</a></li>
+        <li><a id="MyInfo" onclick="open_my_info()">내 정보</a></li>
         <li><a href="#!">환경설정</a></li>
         <li class="divider"></li>
         <li><a href="#!">로그아웃</a></li>
@@ -118,6 +119,9 @@
         }
         function open_add_friend() {
             $('#add-friend').openModal();
+        }
+        function open_my_info(){
+            $('#my-info').openModal();
         }
 
     </script>
