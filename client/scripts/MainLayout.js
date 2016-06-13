@@ -3,6 +3,45 @@
  */
 import { Template } from 'meteor/templating';
 
+var FriendList = function()
+{
+    var friendIds = UserAddition.findOne({userId:Meteor.userId()});
+    var result = [];
+    for(var id in friendIds)
+    {
+        var friend = UserAddition.findOne({userId:id});
+        result.push({
+            friend_id:id,
+            friend_name:friend.nickName,
+            friend_img:friend.profile
+        });
+    }
+    return result;
+}
+
+var SearchFriend = function( email )
+{
+    console.log("search keyword: " + email );
+    if(email.length == 0)
+    {
+        return;
+    }
+    var regEx =  email + '.*';
+    var results = [];
+    var users = UserAddition.find({email:{$regex:regEx}});;
+    for(var user in users)
+    {
+        var friend = UserAddition.findOne({userId:user.userId});
+        results.push({
+            friend_id:friend.userId,
+            friend_name:friend.nickName,
+            friend_img:friend.profile
+        });
+    }
+    console.log("result length:" + results.length) ;
+    return results;
+}
+
 function buildRoomName(roomId)
 {
     var chatRoom = ChatRoom.findOne({_id:roomId});
@@ -48,6 +87,7 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated()
     Meteor.subscribe('Chat');
     // 데이터베이스에 생성된 추가 데이터가 있는지 검사
     Session.setDefault("selectedChatRoom","");
+    Session.set("searchKeyword", "");
     Meteor.call("UserAddition.findOne",Meteor.userId(), function(err, result)
     {
         if(result)
@@ -58,7 +98,10 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated()
         else
         {
             // 결과가 없을 경우 새로운 사용자 추가정보 추가
-            Meteor.call("addNewUserAddition", Meteor.userId());
+            //console.log("Meteor.emails[0].address: " + Meteor.emails[0].address);
+            var user= Meteor.user().emails;
+            var email = Meteor.user().emails[0].address;
+            Meteor.call("addNewUserAddition", Meteor.userId(), email);
             Session.setDefault("userId", Meteor.userId());
             Session.setDefault("nickName", "");
         }
@@ -66,12 +109,12 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated()
 });
 
 Template.MainLayout.helpers({
+    add_friend(){
+        return SearchFriend(Session.get("searchKeyword"))
+    },
     friend_list()
     {
-        return [{
-            friend_name : "김태훈",
-            friend_img : "img/default_profile.png"
-        }];
+        return FriendList();
     },
     chat_room_list()
     {
@@ -116,6 +159,10 @@ Template.MainLayout.helpers({
 });
 
 Template.MainLayout.events({
+    'keydown .search-text-field'(e)
+    {
+        Session.set("searchKeyword",e.target.value);
+    },
     'click #create-room'()
     {
         console.log('새로운 방 생성');
@@ -138,6 +185,10 @@ Template.MainLayout.events({
         var text = input.value;
         sendMessage(text);
         input.value = "";
+    },
+    'click .log-out-button'()
+    {
+        Meteor.logout();
     }
 })
 

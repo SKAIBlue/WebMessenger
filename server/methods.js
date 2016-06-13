@@ -16,8 +16,8 @@ Meteor.methods({
      * 새 유저 추가 정보를 추가합니다
      * @param id users 컬렉션의 _id
      */
-    addNewUserAddition(id){
-        UserAddition.insert({userId:id, nickName:"", chatRoomList:[]});
+    addNewUserAddition(id, email){
+        UserAddition.insert({userId:id, nickName:"", profile:"", email:email ,friends:[],chatRoomList:[]});
     },
     /**
      * 유저의 별명을 수정합니다
@@ -38,7 +38,7 @@ Meteor.methods({
     {
         // email로 시작하는 문자열 정규 표현식
         var regEx =  email + '.*';
-        return Meteor.users.find({emails:{$elemMatch:{address:{$regex:regEx}}}}, callback);
+        return UserAddition.find({email:{$regex:regEx}}, callback);
     },
     /**
      *

@@ -38,7 +38,12 @@
     <div id="add-friend" class="modal add-friend">
         <div class="modal-content">
             <div class="search-friend">
-                <input type="text" placeholder="이메일 또는 닉네임을 입력하세요." autofocus/>
+                <form class="search-text-field">
+                    <input type="text" placeholder="이메일 또는 닉네임을 입력하세요." autofocus/>
+                </form>
+                {{#each add_friend}}
+                    {{>FriendList}}
+                {{/each}}
             </div>
         </div>
     </div>
@@ -47,7 +52,9 @@
         <li><a href="#!">내 정보</a></li>
         <li><a href="#!">환경설정</a></li>
         <li class="divider"></li>
-        <li><a href="#!">로그아웃</a></li>
+        <from class="log-out-button">
+            <li><a href="#!">로그아웃</a></li>
+        </from>
     </ul>
     <!-- 채팅방 리스트 목록 div-->
     <div class="room-list hide-on-med-and-down">
@@ -71,10 +78,11 @@
                        placeholder="메세지를 입력하세요.">
             </form>
             <from class="send-button-form col s1 btn tooltipped" data-position="top" data-delay="50"
-            data-tooltip="전송">
-                <a id="send-button" class="waves-effect waves-light white-text " >전송</a>
+                  data-tooltip="전송">
+                <a id="send-button" class="waves-effect waves-light white-text ">전송</a>
             </from>
-            <form class="send-file-button-form col s12" id="choose-file-form" method="POST" enctype="multipart/form-data"
+            <form class="send-file-button-form col s12" id="choose-file-form" method="POST"
+                  enctype="multipart/form-data"
                   onclick="document.getElementById('choose-file').click()">
                 <a><i class="waves-effect waves-light material-icons">attachment</i></a>
                 <input type='file' id='choose-file' name='file' class="jqUploadclass hide-file-upload-box" accept=''
