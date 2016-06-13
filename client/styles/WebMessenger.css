@@ -138,6 +138,13 @@
     background: #444753;
 
 }
+.invite-friend-btn{
+    font-size: 35px;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-left: 2%;
+    float:left;
+}
 .add-friend-list{
     width:100%;
     height:90%;
@@ -156,6 +163,9 @@
     border-top: 2px solid teal;
 }
 #add_selected_friends{
+    margin-left:80%;
+}
+#invite_selected_friends{
     margin-left:80%;
 }
 #toast-container {

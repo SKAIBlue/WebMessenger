@@ -2,7 +2,7 @@
     <nav class="blue-grey">
         <a href="#!" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
         <ul class="row hide-on-med-and-down">
-            <li class="col s2 center"><a><h5>WebMessenger</h5></a></li>
+            <li class="col s2 center"><a href=""><h5>WebMessenger</h5></a></li>
             <li class="col s1 offset-s7" onclick="open_add_friend()">
                 <a class="waves-effect waves-light modal-trigger center tooltipped" data-position="down" data-delay="50"
                    href="#add-friend" data-tooltip="친구 추가"><i class="material-icons">face</i></a>
@@ -73,20 +73,26 @@
                 {{>chat}}
             {{/each}}
         </div>
+        {{>ModalInviteFriendList}}
+
         <div class="input-chat row">
-            <form class="input-form col s11">
+            <a><i class="invite-friend-btn waves-effect waves-light material-icons tooltipped" data-position="top" data-delay="50"
+                  data-tooltip="대화 상대 추가" onclick="open_invite_friend()">group</i></a>
+            <form class="input-form col s10">
                 <input id='input-message' class="input-message" name="text" autocomplete="off"
                        placeholder="메세지를 입력하세요.">
             </form>
             <from class="send-button-form col s1 btn tooltipped" data-position="top" data-delay="50"
             data-tooltip="전송">
-                <a id="send-button" class="waves-effect waves-light white-text " >전송</a>
+                <a id="send-button" class="waves-effect waves-light white-text">전송</a>
             </from>
-            <form class="send-file-button-form col s12" id="choose-file-form" method="POST" enctype="multipart/form-data"
+            <form class="send-file-button-form offset-s1 col s1" id="choose-file-form" method="POST" enctype="multipart/form-data"
                   onclick="document.getElementById('choose-file').click()">
-                <a><i class="waves-effect waves-light material-icons">attachment</i></a>
+                <a><i class="waves-effect waves-light material-icons tooltipped" data-position="top" data-delay="50"
+                      data-tooltip="파일 첨부">attachment</i></a>
                 <input type='file' id='choose-file' name='file' class="jqUploadclass hide-file-upload-box" accept=''
                        data-form-data='{{submitData}}' onchange="readURL(this,'#uploaded-image')"/>
+
             </form>
         </div>
     </div>
@@ -122,6 +128,9 @@
         }
         function open_my_info(){
             $('#my-info').openModal();
+        }
+        function open_invite_friend(){
+            $('#invite-friend').openModal();
         }
 
     </script>
