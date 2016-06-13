@@ -8,7 +8,7 @@ Meteor.startup(function () {
         tmpDir: process.env.PWD + '/.uploads/tmp',
         uploadDir: process.env.PWD + '/.uploads/',
         checkCreateDirectories: true,
-        getDirectory:function(fileInfo, formData)
+        getDirectory(fileInfo, formData)
         {
             if(formData && formData.directoryName != null)
             {
@@ -16,7 +16,7 @@ Meteor.startup(function () {
             }
             return "";
         },
-        getFileName:function(fileInfo, formData)
+        getFileName(fileInfo, formData)
         {
             if(formData && formData.prefix != null)
             {
@@ -30,7 +30,6 @@ Meteor.startup(function () {
             if(formData && formData._id != null)
             {
                 console.log("finish");
-                Items.update({_id:formData._id} , {$push: {uploads:fileInfo}})
             }
         }
     });

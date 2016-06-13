@@ -66,7 +66,12 @@ Template.ChatLayout.rendered = function(){
 }
 
 Template.ChatLayout.onCreated(function () {
-   Uploader.init(this);
+    Uploader.init(this);
+    console.log("onCreated");
+    if (this.data) {
+        console.log("auto start!");
+        this.autoStart = this.data.autoStart;
+    }
 });
 
 Template.ChatLayout.helpers({
@@ -91,10 +96,13 @@ Template.ChatLayout.events({
         sendMessage(text);
         input.value = "";
     },
-    'change #choose-file-form'(e)
+    'click .send-file-button-form'(){
+        $('.chat-send-file').click();
+    },
+    'change .send-file-input-form'(event, template)
     {
         console.log("upload!");
-        Uploader.upload(instance, e);
+        Uploader.startUpload.call(Template.instance(), event);
     }
 });
 
