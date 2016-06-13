@@ -3,7 +3,7 @@
  */
 import { Template } from 'meteor/templating';
 
-var FriendList = function()
+function FriendList()
 {
     var myAddition = UserAddition.findOne({userId:Meteor.userId()});
     var friendIds = myAddition.friends;
@@ -12,7 +12,7 @@ var FriendList = function()
     {
         var id = friendIds[i];
         var friend = UserAddition.findOne({userId:id});
-        var profile = friend.profile.length == 0 ? "img/default_profile.png" : friend.profile;
+        var profile = friend.profile.length == 0 ? PROFILE_DEFAULT_PATH : friend.profile;
         var nickName = friend.nickName.length == 0 ? friend.email : friend.nickName;
         result.push({
             friendId:id,
@@ -23,7 +23,7 @@ var FriendList = function()
     return result;
 }
 
-var SearchFriend = function( email )
+function SearchFriend( email )
 {
     if(email.length == 0)
     {
@@ -39,7 +39,7 @@ var SearchFriend = function( email )
             return;
         }
         var friend = UserAddition.findOne({userId:user.userId});
-        var profile = friend.profile.length == 0 ? "img/default_profile.png" : friend.profile;
+        var profile = friend.profile.length == 0 ? PROFILE_DEFAULT_PATH : friend.profile;
         var nickName = friend.nickName.length == 0 ? friend.email : friend.nickName;
         results.push({
             friendId:user.userId,
@@ -89,7 +89,38 @@ function buildRoomName(roomId)
 
 function getRoomImage(roomId)
 {
-    return "img/default_profile.png";
+    var chatRoom = ChatRoom.findOne({_id:roomId});
+    var whoIn = chatRoom.whoIn;
+
+    if(whoIn.length== 1)
+    {
+        // 혼자 있는 경우
+        return PROFILE_DEFAULT_PATH;
+    }
+    else if(chatRoom.chatRoomImage.length == 0)
+    {
+        // 방 프로필을 설정하지 않은 경우
+        if(whoIn.length == 2)
+        {
+            if(whoIn[0] == Session.get(SESSION_USER_ID))
+            {
+                var friend = UserAddition.findOne({userId:whoIn[1]});
+                var profile = friend.profile.length == 0 ? PROFILE_DEFAULT_PATH : friend.profile;
+                return  profile;
+            }
+            else
+            {
+                var friend = UserAddition.findOne({userId:whoIn[0]});
+                var profile = friend.profile.length == 0 ? PROFILE_DEFAULT_PATH : friend.profile;
+                return  profile;
+            }
+        }
+        else
+        {
+            return PROFILE_DEFAULT_PATH;
+        }
+    }
+    return chatRoom.chatRoomImage;
 }
 
 function getChatRoomList()
@@ -101,7 +132,6 @@ function getChatRoomList()
     {
         var roomId = myChatRoom[i];
         ChatRoom.findOne(roomId);
-        console.log(roomId);
         chatRoom.push({
             roomId: roomId,
             chatRoomName:buildRoomName(roomId),
@@ -110,30 +140,6 @@ function getChatRoomList()
     }
     return chatRoom;
 }
-
-function getChatList(selectedChatRoom)
-{
-    var chat = Chat.find({roomId:selectedChatRoom});
-    return chat;
-    var result = [];
-    for(var d in chat)
-    {
-        result.push({
-            chatWho:d.chatWho,
-            chatProfile:d.chatProfile,
-            chatText:d.chatText,
-            chatTime:d.chatTime,
-            isMy(){
-                return Meteor.userId == d.chatWho;
-            },
-            position(){
-                return (this.isMy()) ? "me":"you";
-            }
-        });
-    }
-    return result;
-}
-
 
 Template.MainLayout.onCreated(function MainLayoutOnCreated()
 {
@@ -192,48 +198,9 @@ Template.MainLayout.events({
             Meteor.call('ChatRoom.addUser',docInserted, Session.get(SESSION_USER_ID));
         });
     },
-    'submit .input-form'(event)
-    {
-        event.preventDefault();
-        var target = event.target;
-        var text = target.text.value;
-        sendMessage(text);
-        target.text.value = "";
-    },
-    'click .send-button-form'()
-    {
-        var input = document.getElementById('input-message');
-        var text = input.value;
-        sendMessage(text);
-        input.value = "";
-    },
     'click .log-out-button'()
     {
         Session.set(SESSION_SELECTED_CHAT_ROOM,"");
         Meteor.logout();
     }
 })
-
-function sendMessage(message)
-{
-    if(message.length == 0)
-    {
-        return;
-    }
-
-    var selectedChatRoom = Session.get(SESSION_SELECTED_CHAT_ROOM);
-    if(selectedChatRoom.length == 0)
-    {
-        console.log("not select chat room");
-        return;
-    }
-    // 채팅 내용 저장
-    Chat.insert({
-        chatUserId: Session.get(SESSION_USER_ID),
-        chatRoomId: selectedChatRoom,
-        chatText:message,
-        chatTime:new Date(),
-        isFile:false
-    });
-
-}

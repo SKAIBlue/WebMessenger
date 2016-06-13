@@ -6,3 +6,5 @@ SESSION_USER_ID = "userId";
 SESSION_SELECTED_CHAT_ROOM = "selectedChatRoom";
 SESSION_SEARCH_KEY_WORD = "searchKeyword";
 SESSION_NICK_NAME = "nickName";
+
+PROFILE_DEFAULT_PATH = "img/default_profile.png";
