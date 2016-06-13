@@ -1,0 +1,26 @@
+<template name="ChatLayout">
+    <div class="chat-list">
+        <div class="row chat-list-inner">
+            {{#each chat_list}}
+                {{>chat}}
+            {{/each}}
+        </div>
+        <div class="input-chat row">
+            <form class="input-form col s11">
+                <input id='input-message' class="input-message" name="text" autocomplete="off"
+                       placeholder="메세지를 입력하세요.">
+            </form>
+            <from class="send-button-form col s1 btn tooltipped" data-position="top" data-delay="50"
+                  data-tooltip="전송">
+                <a id="send-button" class="waves-effect waves-light white-text ">전송</a>
+            </from>
+            <form class="send-file-button-form col s12" id="choose-file-form" method="POST"
+                  enctype="multipart/form-data"
+                  onclick="document.getElementById('choose-file').click()">
+                <a><i class="waves-effect waves-light material-icons">attachment</i></a>
+                <input type='file' id='choose-file' name='file' class="jqUploadclass hide-file-upload-box" accept=''
+                       data-form-data='{{submitData}}' onchange="readURL(this,'#uploaded-image')"/>
+            </form>
+        </div>
+    </div>
+</template>

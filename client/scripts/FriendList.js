@@ -3,11 +3,19 @@
  */
 
 Template.FriendList.events({
-   'click friend-box'(){
-       console.log("friend click");
+   'click .friend-list-box'(e){
+       CreateChatRoom(this.friendId);
    }
 });
 
-Template.FriendList.helpers({
-
-})
+CreateChatRoom = function(id){
+    var myAddition = UserAddition.findOne({userId:Meteor.userId()});
+    var friendAddition = UserAddition.findOne({userId:id});
+    var chatRoomId = ChatRoom.insert({
+        whoIn:[ Meteor.userId(), id ],
+        chatRoomName:"",
+        chatRoomImage:""
+    });
+    UserAddition.update(myAddition._id, {$push:{chatRoomList:chatRoomId}});
+    UserAddition.update(friendAddition._id, {$push:{chatRoomList:chatRoomId}});
+}
