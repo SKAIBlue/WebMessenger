@@ -5,7 +5,6 @@
 Meteor.startup(function () {
     UploadServer.init({
         // https://github.com/tomitrescak/meteor-uploads 파일 업로드 패키지
-
         tmpDir: process.env.PWD + '/.uploads/tmp',
         uploadDir: process.env.PWD + '/.uploads/',
         checkCreateDirectories: true,
@@ -30,6 +29,7 @@ Meteor.startup(function () {
             // 디스크 운영 처리
             if(formData && formData._id != null)
             {
+                console.log("finish");
                 Items.update({_id:formData._id} , {$push: {uploads:fileInfo}})
             }
         }

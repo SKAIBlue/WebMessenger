@@ -8,9 +8,19 @@ Meteor.publish('UserAddition', function UserAdditionPublication() {
 });
 
 Meteor.publish('ChatRoom', function ChatRoomPublication(){
-    return ChatRoom.find();
+    if(this.userId)
+    {
+        var list = UserAddition.findOne({userId:this.userId}).chatRoomList;
+        return ChatRoom.find({_id:{$in:list}});
+    }
+    return[];
 });
 
 Meteor.publish('Chat', function ChatPublication(){
-    return Chat.find();
+    if(this.userId)
+    {
+        var list = UserAddition.findOne({userId:this.userId}).chatRoomList;
+        return Chat.find({chatRoomId:{$in:list}});
+    }
+    return[];
 });

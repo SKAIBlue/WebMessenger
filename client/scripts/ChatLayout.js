@@ -93,6 +93,7 @@ Template.ChatLayout.events({
     },
     'change #choose-file-form'(e)
     {
+        console.log("upload!");
         Uploader.upload(instance, e);
     }
 });

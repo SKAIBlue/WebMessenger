@@ -2,7 +2,11 @@
  * Created by kth on 16. 5. 23.
  */
 import { Template } from 'meteor/templating';
-
+/**
+ * 친구 목록을 가져옵니다
+ * @returns {Array}
+ * @constructor
+ */
 function FriendList()
 {
     var myAddition = UserAddition.findOne({userId:Meteor.userId()});
@@ -22,7 +26,12 @@ function FriendList()
     }
     return result;
 }
-
+/**
+ * 친구를 검색합니다
+ * @param email email
+ * @returns {Array} 사용자 배열
+ * @constructor
+ */
 function SearchFriend( email )
 {
     if(email.length == 0)
@@ -51,6 +60,11 @@ function SearchFriend( email )
     return results;
 }
 
+/**
+ * 방 목록을 만듭니다
+ * @param roomId
+ * @returns {*}
+ */
 function buildRoomName(roomId)
 {
     var chatRoom = ChatRoom.findOne({_id:roomId});
