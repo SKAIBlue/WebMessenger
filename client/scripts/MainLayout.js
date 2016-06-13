@@ -103,7 +103,6 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated()
         else
         {
             // 결과가 없을 경우 새로운 사용자 추가정보 추가
-            var user= Meteor.user().emails;
             var email = Meteor.user().emails[0].address;
             Meteor.call("addNewUserAddition", Meteor.userId(), email);
             Session.setDefault("userId", Meteor.userId());
