@@ -98,7 +98,6 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated()
         else
         {
             // 결과가 없을 경우 새로운 사용자 추가정보 추가
-            //console.log("Meteor.emails[0].address: " + Meteor.emails[0].address);
             var user= Meteor.user().emails;
             var email = Meteor.user().emails[0].address;
             Meteor.call("addNewUserAddition", Meteor.userId(), email);
@@ -162,6 +161,16 @@ Template.MainLayout.events({
     'keydown .search-text-field'(e)
     {
         Session.set("searchKeyword",e.target.value);
+    },
+    'click #find_friend_list'()
+    {
+        var input_value = document.getElementById('input_add_friend').value;
+        if(!input_value) {
+            Materialize.toast('찾을 친구의 이메일이나 닉네임을 입력하세요', 2000); //토스트
+        }else{
+            //TODO 구축
+        }
+
     },
     'click #create-room'()
     {
