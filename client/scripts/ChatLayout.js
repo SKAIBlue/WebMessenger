@@ -39,8 +39,6 @@ function getChatList(selectedChatRoom)
     return result;
 }
 
-
-
 function sendMessage(message)
 {
     if(message.length == 0)
@@ -63,6 +61,14 @@ function sendMessage(message)
     });
 }
 
+Template.ChatLayout.rendered = function(){
+    Uploader.render.call(this);
+}
+
+Template.ChatLayout.onCreated(function () {
+   Uploader.init(this);
+});
+
 Template.ChatLayout.helpers({
     chat_list(){
         return getChatList(Session.get(SESSION_SELECTED_CHAT_ROOM));
@@ -84,6 +90,10 @@ Template.ChatLayout.events({
         var text = input.value;
         sendMessage(text);
         input.value = "";
+    },
+    'change #choose-file-form'(e)
+    {
+        Uploader.upload(instance, e);
     }
 });
 
