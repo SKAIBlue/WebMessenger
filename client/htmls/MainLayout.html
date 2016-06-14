@@ -38,18 +38,20 @@
     <div id="add-friend" class="modal add-friend ">
         <div class="modal-content add-friend-list">
             <div class="search-friend row">
-                <form class="search-text-field">
-                    <input type="text" placeholder="이메일 또는 닉네임을 입력하세요." autofocus/>
-                </form>
+                <input id="input_add_friend" class ="col s9" type="text" placeholder="이메일 또는 닉네임을 입력하세요." autofocus/>
+                <p id="find_friend_list" class="offset-s1 col s2 send-button-form col s1 btn tooltipped" data-position="right" data-delay="50"
+                      data-tooltip="찾기">찾기</p>
                 {{#each add_friend_list}}
                     {{>AddFriend}}
                 {{/each}}
+
             </div>
         </div>
+        <div id="add_selected_friends" class="btn">추가</div>
     </div>
     <!-- for 설정 버튼 드롭다운 메뉴 -->
     <ul id='settings-btn' class='dropdown-content'>
-        <li><a href="#!">내 정보</a></li>
+        <li><a id="MyInfo" onclick="open_my_info()">내 정보</a></li>
         <li><a href="#!">환경설정</a></li>
         <li class="divider"></li>
         <from class="log-out-button">
@@ -71,6 +73,35 @@
     {{else}}
         {{>ChatLayout}}
     {{/if}}
+    <div class="chat-list">
+        <div class="row chat-list-inner">
+            {{#each chat_list}}
+                {{>chat}}
+            {{/each}}
+        </div>
+        {{>ModalInviteFriendList}}
+
+        <div class="input-chat row">
+            <a><i class="invite-friend-btn waves-effect waves-light material-icons tooltipped" data-position="top" data-delay="50"
+                  data-tooltip="대화 상대 추가" onclick="open_invite_friend()">group</i></a>
+            <form class="input-form col s10">
+                <input id='input-message' class="input-message" name="text" autocomplete="off"
+                       placeholder="메세지를 입력하세요.">
+            </form>
+            <from class="send-button-form col s1 btn tooltipped" data-position="top" data-delay="50"
+                  data-tooltip="전송">
+                <a id="send-button" class="waves-effect waves-light white-text">전송</a>
+            </from>
+            <form class="send-file-button-form offset-s1 col s1" id="choose-file-form" method="POST" enctype="multipart/form-data"
+                  onclick="document.getElementById('choose-file').click()">
+                <a><i class="waves-effect waves-light material-icons tooltipped" data-position="top" data-delay="50"
+                      data-tooltip="파일 첨부">attachment</i></a>
+                <input type='file' id='choose-file' name='file' class="jqUploadclass hide-file-upload-box" accept=''
+                       data-form-data='{{submitData}}' onchange="readURL(this,'#uploaded-image')"/>
+
+            </form>
+        </div>
+    </div>
     <script>
         $(document).ready(function () {
             $('.chat-list-inner').scrollTop = 100; // 스크롤을 맨 아래로 땡김
@@ -100,6 +131,12 @@
         }
         function open_add_friend() {
             $('#add-friend').openModal();
+        }
+        function open_my_info(){
+            $('#my-info').openModal();
+        }
+        function open_invite_friend(){
+            $('#invite-friend').openModal();
         }
     </script>
 </template>

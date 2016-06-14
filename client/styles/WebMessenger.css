@@ -58,6 +58,11 @@
     width: 64px;
     align:center;
 }
+.profile-info{
+    height:128px;
+    width: 128px;
+    align:center;
+}
 .profile-room-mobile {
     height:50px;
     width: 50px;
@@ -133,12 +138,34 @@
     background: #444753;
 
 }
+.invite-friend-btn{
+    font-size: 35px;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-left: 2%;
+    float:left;
+}
 .add-friend-list{
     width:100%;
     height:90%;
     overflow: auto;
 }
+.my-info{
+    width:500px;
+    height:500px;
+    background: #444753;
+    overflow:hidden;
+}
+.my-info-box{
+}
+.separate-line{
+    margin-top: 2px;
+    border-top: 2px solid teal;
+}
 #add_selected_friends{
+    margin-left:80%;
+}
+#invite_selected_friends{
     margin-left:80%;
 }
 #toast-container {
@@ -147,6 +174,7 @@
     bottom: 10%;
     left:40%;
 }
+
 @media screen and (max-width:992px) {
     .input-chat {
         margin-bottom  : 0%;
