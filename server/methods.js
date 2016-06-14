@@ -61,7 +61,7 @@ Meteor.methods({
      */
     'ChatRoom.invite'(roomId, friendId)
     {
-        var _id = UserAddition.findOne({userId:Meteor.userId()})._id;
+        var _id = UserAddition.find({userId:friendId}).fetch()[0];
         UserAddition.update(_id, {$push:{chatRoomList:roomId}});
         ChatRoom.update(roomId, {$push:{whoIn:friendId}});
     },

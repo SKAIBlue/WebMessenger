@@ -7,7 +7,16 @@ Meteor.startup(function() {
         var uploadSelector = Session.get(SESSION_UPLOAD_SELECTOR);
         if(uploadSelector == UPLOAD_FILE)
         {
-            console.log("upload file");
+            var selectedChatRoom = Session.get(SESSION_SELECTED_CHAT_ROOM);
+            var isImage = (file.type.indexOf('image') >= 0)
+            Chat.insert({
+                chatUserId: Session.get(SESSION_USER_ID),
+                chatRoomId: selectedChatRoom,
+                chatText:"upload/"+file.path,
+                chatTime:new Date(),
+                isFile:true,
+                isImage:isImage
+            });
         }
         else if(uploadSelector == UPLOAD_PROFILE)
         {

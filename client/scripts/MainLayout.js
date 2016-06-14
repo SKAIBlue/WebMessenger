@@ -97,6 +97,7 @@ function buildRoomName(roomId) {
         }
         return chatRoom.chatRoomName;
     }
+    console.log("build room name chat room is undefined");
     return "제목 생성 오류";
 }
 
