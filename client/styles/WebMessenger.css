@@ -99,13 +99,14 @@
 .chat-list{
     width:77%;
     margin-left:23%;
-    height :83%;
+    height :93%;
     position: absolute;
     background: #F2F5F8;
+    overflow: hidden;
 }
 .chat-list-inner{
     overflow-y: auto;
-    height:95%;
+    height:88%;
 }
 .time {
     float : right;
@@ -117,7 +118,6 @@
     margin-top  : 50%;
  }
 .input-chat{
-    height:12%;
     background: #F2F5F8;
     border-top: 2px solid white;
 }
@@ -164,6 +164,10 @@
 }
 .cursor-default-area{
     cursor: default;
+}
+.file-upload-btn{
+    margin-left : 29%;
+    margin-top : 820px;
 }
 #profile_change_btn{
     margin-left: 35%;

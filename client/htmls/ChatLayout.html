@@ -5,7 +5,6 @@
                 {{>chat}}
             {{/each}}
         </div>
-        {{>ModalInviteFriendList}}
         <div class="input-chat row">
             <a><i class="invite-friend-btn waves-effect waves-light material-icons tooltipped" data-position="top"
                   data-delay="50"
@@ -18,16 +17,13 @@
                   data-tooltip="전송">
                 <a id="send-button" class="waves-effect waves-light white-text ">전송</a>
             </from>
-            <form class="send-file-button-form">
-                <a><i class="waves-effect waves-light material-icons tooltipped" data-position="top" data-delay="50"
-                      data-tooltip="파일 첨부">attachment</i></a>
+            <form id="send-file-button-form" class="offset-s1 col s1" method="POST" enctype="multipart/form-data">
+                <i class="waves-effect waves-light material-icons tooltipped blue-text" data-position="top" data-delay="50"
+                      data-tooltip="파일 첨부">attachment</i>
             </form>
-            <form id="send-file-input-form" method="POST"
-                  enctype="multipart/form-data">
-                <input type='file' name='file' class="jqUploadclass hide-file-upload-box chat-send-file" accept=''
-                       data-form-data='{{submitData}}'/>
-            </form>
+            <input id="chat-send-file" type='file' name='file' class="jqUploadclass hide-file-upload-box send-file-input-form" accept=''
+                   data-form-data='{{submitData}}'/>
         </div>
     </div>
-
+    {{>ModalInviteFriendList}}
 </template>
