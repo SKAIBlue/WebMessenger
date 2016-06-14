@@ -74,7 +74,7 @@
     float:right;
 }
 .room-list{
-    width:25%;
+    width:23%;
     height :882px;
     background: #444753;
     float:left;
@@ -97,8 +97,8 @@
     color:black;
 }
 .chat-list{
-    width:75%;
-    margin-left:25%;
+    width:77%;
+    margin-left:23%;
     height :83%;
     position: absolute;
     background: #F2F5F8;
