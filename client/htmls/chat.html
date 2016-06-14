@@ -1,18 +1,26 @@
 <template name="chat">
-    <p class="col s12">
-        {{#if isYou}}
-            <img src="{{chatProfile}}" class="circle profile-chat you">{{chatWho}}<br>
-        {{/if}}
-        {{#if isFile}}
-            <div class="bubble {{position}}"><img src="{{chatText}}"><br>
-                {{chatText}}
-                <div class="time">{{chatTime}}</div>
-            </div>
-
-        {{else}}
-            <div class="bubble {{position}}">{{chatText}}<br>
-                <div class="time">{{chatTime}}</div>
-            </div>
-        {{/if}}
+<p class="col s12">
+    {{#if isYou}}
+        <img src="{{chatProfile}}" class="circle profile-chat you">{{chatWho}}<br>
+    {{/if}}
+    {{#if isFile}}
+        <div class="bubble {{position}}">
+            {{#if isImage}}
+                <a href="{{chatFilePath}}">
+                    <img src="{{chatText}}"></a>
+            {{else}}
+                <a href="#" download data-url="{{chatFilePath}}" type="button" class="download-file">
+                    <img src="img/file_icon.png"></a>
+            {{/if}}
+            <br>
+            {{chatFilePath}}
+            <div class="time">{{chatTime}}</div>
+        </div>
+        <br>
+    {{else}}
+        <div class="bubble {{position}}">{{chatText}}<br>
+            <div class="time">{{chatTime}}</div>
+        </div>
+    {{/if}}
     </p>
 </template>

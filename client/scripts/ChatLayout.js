@@ -32,6 +32,8 @@ function getChatList(selectedChatRoom)
             chatText:text,
             chatTime:time,
             isFile:item.isFile,
+            isImage:item.isImage,
+            chatFilePath:item.chatText,
             isYou(){
                 return Meteor.userId() != item.chatUserId;
             },
