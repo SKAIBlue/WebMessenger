@@ -5,14 +5,6 @@
 
 Meteor.methods({
     /**
-     * 미티어 메소드의 형식입니다
-     * @param parameters 매개 변수
-     */
-    name: function( parameters )
-    {
-
-    },
-    /**
      * 새 유저 추가 정보를 추가합니다
      * @param id users 컬렉션의 _id
      */
@@ -30,7 +22,6 @@ Meteor.methods({
     {
         var myAddition = UserAddition.findOne({userId:this.userId});
         UserAddition.update(myAddition._id, {$set:{nickName:nickName}});
-        alert("닉네임 성공적으로 변경됨");
     },
     /**
      *
@@ -73,6 +64,16 @@ Meteor.methods({
         var _id = UserAddition.findOne({userId:Meteor.userId()})._id;
         UserAddition.update(_id, {$push:{chatRoomList:roomId}});
         ChatRoom.update(roomId, {$push:{whoIn:friendId}});
+    },
+    /**
+     * 비밀번호를 변경합니다
+     * @param oldPassword 이전 패스워드
+     * @param newPassword 새로운 패스워드
+     * @param callback 콜백 함수
+     */
+    'Users.ChangePassword'(oldPassword, newPassword, callback)
+    {
+        this.changePassword(oldPassword,newPassword, callback);
     }
 });
 

@@ -63,18 +63,14 @@ function sendMessage(message)
     });
 }
 
-Template.ChatLayout.rendered = function(){
+Template.ChatLayout.onCreated(function(){
+    Uploader.init(this);
+});
+
+Template.ChatLayout.rendered = function()
+{
     Uploader.render.call(this);
 }
-
-Template.ChatLayout.onCreated(function () {
-    Uploader.init(this);
-    console.log("onCreated");
-    if (this.data) {
-        console.log("auto start!");
-        this.autoStart = this.data.autoStart;
-    }
-});
 
 Template.ChatLayout.helpers({
     chat_list(){
@@ -103,8 +99,8 @@ Template.ChatLayout.events({
     },
     'change #send-file-input-form'(event, template)
     {
-    //    console.log("upload!");
-    //    Uploader.startUpload.call(Template.instance(), event);
+        console.log("upload!");
+        Uploader.startUpload.call(Template.instance(), event);
     }
 });
 

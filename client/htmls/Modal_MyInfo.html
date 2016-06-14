@@ -23,16 +23,34 @@
             </div>
             <div class="separate-line"><h6 class="white-text center">프로필 사진 변경</h6></div>
             <div class="row">
-                <div class="center" onclick="changeProfileImg()"><img src="img/default_profile.png" class="circle responsive-img profile-info"></div>
+                <form class="profile-image-form">
+                    <div class="center"><img src="img/default_profile.png" class="circle responsive-img profile-info">
+                    </div>
+                </form>
             </div>
-            <p id="profile_change_btn" class="offset-s7 col s5 send-button-form col s1 btn tooltipped" data-position="right" data-delay="50"
-               data-tooltip="프로필 변경">프로필 변경</p>
+            <form id="change-profile-input-form" method="POST"
+                  enctype="multipart/form-data">
+                <input id="profile-upload-input" type='file' name='file'
+                       class="jqUploadclass hide-file-upload-box profile-upload-input" accept='image/*'
+                       data-form-data='{{submitData}}' onchange="readURL(this,'.profile-info')"/>
+            </form>
+            <form class="change-profile-button-form">
+                <p id="profile_change_btn" class="offset-s7 col s5 send-button-form col s1 btn tooltipped"
+                   data-position="right" data-delay="50"
+                   data-tooltip="프로필 변경">프로필 변경</p>
+            </form>
         </div>
     </div>
     <script>
-        function changeProfileImg(){
-            alert("upload!");
-            //TODO 프로필 업로드 구현
+        function readURL(input, imageSelector) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    // 하나의 문서에 이 아이디는 하나만 존재 해야함
+                    $(imageSelector).attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
         }
     </script>
 </template>

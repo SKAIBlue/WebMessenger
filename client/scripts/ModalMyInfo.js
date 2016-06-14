@@ -1,6 +1,16 @@
 /**
  * Created by Anonymous on 2016. 6. 14..
  */
+
+Template.MyInfo.onCreated(function(){
+    Uploader.init(this);
+});
+
+Template.MyInfo.rendered = function()
+{
+    Uploader.render.call(this);
+}
+
 Template.MyInfo.helpers({
 
 });
@@ -18,12 +28,28 @@ Template.MyInfo.events({
         var password2 = document.getElementById('input_password2');
         if(password1.value == password2.value)
         {
-            Meteor.users.changePassword(oldPassword.value, password1.value);
+            Meteor.call('Users.ChangePassword', oldPassword.value, password1.value, function(err){
+                if(err)
+                {
+                    alert("오류");
+                }
+            });
         }
         else
         {
-            // 1,2차 비밀번호 다름
             alert("입력한 비밀번호가 다릅니다");
         }
+    },
+    'click .profile-image-form'()
+    {
+        Session.set(SESSION_UPLOAD_SELECTOR, UPLOAD_PROFILE);
+        $('#profile-upload-input').click();
+    },
+    'click .change-profile-button-form'(e)
+    {
+//        Uploader.init(onCreate);
+//        Uploader.render.call(onRender);
+        console.log('click upload button');
+        Uploader.startUpload.call(Template.instance(), e);
     }
 });
