@@ -137,16 +137,21 @@ function getRoomImage(roomId)
     return chatRoom.chatRoomImage;
 }
 
-function getChatRoomList()
+function getChatRoomList(keyword)
 {
     var addition = UserAddition.findOne({userId:Session.get(SESSION_USER_ID)});
     var myChatRoom = addition.chatRoomList;
     var chatRoom = [];
     for(var i = 0 ; i < myChatRoom.length ; ++i)
     {
-        //var roomName = buildRoomName(roomId);
-        //TODO: 방 제목 비교 처리
         var roomId = myChatRoom[i];
+        var roomName = buildRoomName(roomId);
+        var regEx =  keyword + '.*';
+        //TODO: 방 제목 비교 처리
+        if(!(!keyword || !(keyword.length != 0)) && !roomName.match(regEx))
+        {
+            continue;
+        }
         ChatRoom.findOne(roomId);
         chatRoom.push({
             roomId: roomId,
@@ -165,6 +170,8 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated()
     Meteor.subscribe('Chat');
     // 데이터베이스에 생성된 추가 데이터가 있는지 검사
     Session.setDefault(SESSION_SELECTED_CHAT_ROOM,"");
+    Session.setDefault(SESSION_SEARCH_KEY_WORD, "");
+    Session.set(SESSION_SELECTED_CHAT_ROOM,"");
     Session.set(SESSION_SEARCH_KEY_WORD, "");
     Meteor.call("UserAddition.findOne",Meteor.userId(), function(err, result)
     {
@@ -201,7 +208,7 @@ Template.MainLayout.helpers({
     },
     chat_room_list()
     {
-        return getChatRoomList();
+        return getChatRoomList(Session.get(SESSION_SEARCH_CHAT_ROOM));
     }
 });
 
@@ -209,6 +216,10 @@ Template.MainLayout.events({
     'keyup .search-text-field'(e)
     {
         Session.set(SESSION_SEARCH_KEY_WORD,e.target.value);
+    },
+    'keyup .search-chat-room-text-field'(e)
+    {
+        Session.set(SESSION_SEARCH_CHAT_ROOM,e.target.value);
     },
     'click #create-room'()
     {

@@ -63,7 +63,9 @@
     <!-- 채팅방 리스트 목록 div-->
     <div class="room-list hide-on-med-and-down">
         <div class="search">
-            <input type="text" placeholder="검색"/>
+            <form class="search-chat-room-text-field">
+                <input type="text" placeholder="검색"/>
+            </form>
         </div>
         {{#each chat_room_list}}
             {{> room}}
