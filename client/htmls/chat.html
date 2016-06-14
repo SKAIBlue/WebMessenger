@@ -1,6 +1,6 @@
 <template name="chat">
     <p class="col s12">
-        {{#if isMy}}
+        {{#if isYou}}
             <img src="{{chatProfile}}" class="circle profile-chat you">{{chatWho}}<br>
         {{/if}}
         {{#if isFile}}

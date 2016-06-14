@@ -80,14 +80,17 @@ function buildRoomName(roomId)
         // 방 제목을 설정하지 않은 경우
         if(whoIn.length == 2)
         {
+            console.log(whoIn[0] +" " + Session.get(SESSION_USER_ID));
             if(whoIn[0] == Session.get(SESSION_USER_ID))
             {
+                console.log("1");
                 var friend = UserAddition.findOne({userId:whoIn[1]});
                 var nickName = friend.nickName.length == 0 ? friend.email : friend.nickName;
                 return  nickName + " 님과의 대화"
              }
             else
             {
+                console.log("2");
                 var friend = UserAddition.findOne({userId:whoIn[0]});
                 var nickName = friend.nickName.length == 0 ? friend.email : friend.nickName;
                 return nickName + " 님과의 대화"
@@ -144,6 +147,8 @@ function getChatRoomList()
     var chatRoom = [];
     for(var i = 0 ; i < myChatRoom.length ; ++i)
     {
+        //var roomName = buildRoomName(roomId);
+        //TODO: 방 제목 비교 처리
         var roomId = myChatRoom[i];
         ChatRoom.findOne(roomId);
         chatRoom.push({
@@ -170,6 +175,8 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated()
         {
             Session.setDefault(SESSION_USER_ID, result.userId);
             Session.setDefault(SESSION_NICK_NAME, result.nickName);
+            Session.set(SESSION_USER_ID, result.userId);
+            Session.set(SESSION_NICK_NAME, result.nickName);
         }
         else
         {
@@ -178,6 +185,8 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated()
             Meteor.call("addNewUserAddition", Meteor.userId(), email);
             Session.setDefault(SESSION_USER_ID, Meteor.userId());
             Session.setDefault(SESSION_NICK_NAME, "");
+            Session.set(SESSION_USER_ID, Meteor.userId());
+            Session.set(SESSION_NICK_NAME, "");
         }
     });
 });

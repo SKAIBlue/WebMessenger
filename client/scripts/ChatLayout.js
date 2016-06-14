@@ -28,11 +28,12 @@ function getChatList(selectedChatRoom)
             chatProfile:profile,
             chatText:item.chatText,
             chatTime:time,
-            isMy(){
-                return Meteor.userId() == item.chatUserId;
+            isYou(){
+                console.log(Meteor.userId() + " " + item.chatUserId);
+                return Meteor.userId() != item.chatUserId;
             },
             position(){
-                return (this.isMy()) ? "me":"you";
+                return (this.isYou()) ? "you":"me";
             }
         });
     });
@@ -99,10 +100,10 @@ Template.ChatLayout.events({
     'click .send-file-button-form'(){
         $('.chat-send-file').click();
     },
-    'change .send-file-input-form'(event, template)
+    'change #send-file-input-form'(event, template)
     {
-        console.log("upload!");
-        Uploader.startUpload.call(Template.instance(), event);
+    //    console.log("upload!");
+    //    Uploader.startUpload.call(Template.instance(), event);
     }
 });
 
