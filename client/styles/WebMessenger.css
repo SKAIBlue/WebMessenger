@@ -1,5 +1,11 @@
 /* CSS declarations go here */
-
+html{
+    height:100%;
+}
+body{
+    height:100%;
+    overflow:hidden;
+}
 
 .bubble{
     background-color: #F2F2F2;
@@ -75,10 +81,11 @@
 }
 .room-list{
     width:23%;
-    height :882px;
+    height :100%;
     background: #444753;
     float:left;
     overflow-y: auto;
+    overflow: hidden;
 }
 .room{
     width :80%;
@@ -99,14 +106,13 @@
 .chat-list{
     width:77%;
     margin-left:23%;
-    height :93%;
-    position: absolute;
+    height :88%;
+    position: relative;
     background: #F2F5F8;
-    overflow: hidden;
+    overflow: auto;
 }
 .chat-list-inner{
     overflow-y: auto;
-    height:88%;
 }
 .time {
     float : right;
@@ -118,6 +124,10 @@
     margin-top  : 50%;
  }
 .input-chat{
+    margin-top:0%;
+    margin-left:23%;
+    width: 77%;
+    height: 30%;
     background: #F2F5F8;
     border-top: 2px solid white;
 }

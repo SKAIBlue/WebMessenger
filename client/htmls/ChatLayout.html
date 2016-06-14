@@ -5,25 +5,25 @@
                 {{>chat}}
             {{/each}}
         </div>
-        <div class="input-chat row">
-            <a><i class="invite-friend-btn waves-effect waves-light material-icons tooltipped" data-position="top"
-                  data-delay="50"
-                  data-tooltip="대화 상대 추가" onclick="open_invite_friend()">group</i></a>
-            <form class="input-form col s10">
-                <input id='input-message' class="input-message" name="text" autocomplete="off"
-                       placeholder="메세지를 입력하세요.">
-            </form>
-            <from class="send-button-form col s1 btn tooltipped" data-position="top" data-delay="50"
-                  data-tooltip="전송">
-                <a id="send-button" class="waves-effect waves-light white-text ">전송</a>
-            </from>
-            <form id="send-file-button-form" class="offset-s1 col s1" method="POST" enctype="multipart/form-data">
-                <i class="waves-effect waves-light material-icons tooltipped blue-text" data-position="top" data-delay="50"
-                      data-tooltip="파일 첨부">attachment</i>
-            </form>
-            <input id="chat-send-file" type='file' name='file' class="jqUploadclass hide-file-upload-box send-file-input-form" accept=''
-                   data-form-data='{{submitData}}'/>
-        </div>
+    </div>
+    <div class="input-chat row">
+        <a><i class="invite-friend-btn waves-effect waves-light material-icons tooltipped" data-position="top"
+              data-delay="50"
+              data-tooltip="대화 상대 추가" onclick="open_invite_friend()">group</i></a>
+        <form class="input-form col s10">
+            <input id='input-message' class="input-message" name="text" autocomplete="off"
+                   placeholder="메세지를 입력하세요.">
+        </form>
+        <from class="send-button-form col s1 btn tooltipped" data-position="top" data-delay="50"
+              data-tooltip="전송">
+            <a id="send-button" class="waves-effect waves-light white-text ">전송</a>
+        </from>
+        <form id="send-file-button-form" class="offset-s1 col s1" method="POST" enctype="multipart/form-data">
+            <i class="waves-effect waves-light material-icons tooltipped blue-text" data-position="top" data-delay="50"
+               data-tooltip="파일 첨부">attachment</i>
+        </form>
+        <input id="chat-send-file" type='file' name='file' class="jqUploadclass hide-file-upload-box send-file-input-form" accept=''
+               data-form-data='{{submitData}}'/>
     </div>
     {{>ModalInviteFriendList}}
 </template>
