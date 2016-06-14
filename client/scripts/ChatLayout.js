@@ -94,12 +94,9 @@ Template.ChatLayout.events({
         sendMessage(text);
         input.value = "";
     },
-    'click .send-file-button-form'(){
-        $('.chat-send-file').click();
-    },
-    'change #send-file-input-form'(event, template)
-    {
-        console.log("upload!");
+    'click #send-file-button-form'(){
+        console.log("click!");
+        $('#chat-send-file').click();
         Uploader.startUpload.call(Template.instance(), event);
     }
 });
