@@ -147,7 +147,6 @@ function getChatRoomList(keyword)
         var roomId = myChatRoom[i];
         var roomName = buildRoomName(roomId);
         var regEx =  keyword + '.*';
-        //TODO: 방 제목 비교 처리
         if(!(!keyword || !(keyword.length != 0)) && !roomName.match(regEx))
         {
             continue;
@@ -223,7 +222,6 @@ Template.MainLayout.events({
     },
     'click #create-room'()
     {
-        console.log('새로운 방 생성');
         Meteor.call('ChatRoom.createRoom',function(err, docInserted){
             console.log(Session.get(SESSION_USER_ID));
             Meteor.call('ChatRoom.addUser',docInserted, Session.get(SESSION_USER_ID));

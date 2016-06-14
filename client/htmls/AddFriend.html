@@ -1,20 +1,21 @@
 <template name="AddFriend">
-
-    <div id ="friend-box" class="col s12" onclick="close_friend_list()"> <!-- 친구 -->
-        <a class="black-text">
-            <div class="grey lighten-1 white-text room hoverable tooltipped" data-position="right" data-delay="50"
-                 data-tooltip="닉네임 : {{nickName}}">
-                <div class="valign-wrapper">
-                    <div class="profile-room">
-                        <img src="{{Profile}}" class="circle responsive-img">
-                    </div>
-                    <div>
-                        <h6 id="friend_name">{{email}}</h6>
+    <form class="add-friend-box">
+        <div id="friend-box" class="col s12" onclick="close_friend_list()"> <!-- 친구 -->
+            <a class="black-text">
+                <div class="grey lighten-1 white-text room hoverable tooltipped" data-position="right" data-delay="50"
+                     data-tooltip="닉네임 : {{nickName}}">
+                    <div class="valign-wrapper">
+                        <div class="profile-room">
+                            <img src="{{Profile}}" class="circle responsive-img">
+                        </div>
+                        <div>
+                            <h6 id="friend_name">{{email}}</h6>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
-    </div>
+            </a>
+        </div>
+    </form>
     <script>
         function choose_friend() {
 

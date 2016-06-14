@@ -9,9 +9,7 @@ Template.MyInfo.events({
     'click .modify-nick-name-form'(e)
     {
         var input = document.getElementById('input_nickname');
-        var myAddition = UserAddition.findOne({userId:Meteor.userId()});
-        UserAddition.update(myAddition._id, {$set:{nickName:input.value}});
-        alert("닉네임 성공적으로 변경됨");
+        Meteor.call('UserAddition.ModifyNickName',input.value);
     },
     'click .modify-password-form'(e)
     {

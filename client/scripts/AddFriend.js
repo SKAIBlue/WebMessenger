@@ -4,12 +4,7 @@
 Template.AddFriend.events({
     'click .add-friend-box'(e)
     {
-        AddFriend(this.friendId);
+        Meteor.call('UserAddition.AddFriend', this.friendId);
+        $('#add-friend').closeModal();
     }
 });
-
-AddFriend = function(id)
-{
-    var _id = UserAddition.findOne({userId:Meteor.userId()})._id;
-    UserAddition.update(_id, {$push:{friends:id}});
-}

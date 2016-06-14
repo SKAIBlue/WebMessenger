@@ -16,7 +16,8 @@ Meteor.methods({
      * 새 유저 추가 정보를 추가합니다
      * @param id users 컬렉션의 _id
      */
-    addNewUserAddition(id, email){
+    addNewUserAddition(id, email)
+    {
         UserAddition.insert({userId:id, nickName:"", profile:"", email:email ,friends:[],chatRoomList:[]});
     },
     /**
@@ -25,8 +26,11 @@ Meteor.methods({
      * @param nickName nickName 별명
      * @param callback 콜백 함수
      */
-    modifyUserNickName(id, nickName, callback){
-
+    'UserAddition.ModifyNickName'(nickName)
+    {
+        var myAddition = UserAddition.findOne({userId:this.userId});
+        UserAddition.update(myAddition._id, {$set:{nickName:nickName}});
+        alert("닉네임 성공적으로 변경됨");
     },
     /**
      *
@@ -50,5 +54,25 @@ Meteor.methods({
     {
         return UserAddition.findOne({userId:id}, callback);
     },
+    /**
+     * friendId에 해당하는 친구를 추가합니다
+     * @param friendId 친구 id
+     */
+    'UserAddition.AddFriend'(friendId)
+    {
+        var _id = UserAddition.findOne({userId:this.userId})._id;
+        UserAddition.update(_id, {$push:{friends:friendId}});
+    },
+    /**
+     * roomId에 해당하는 방에 friendId에 해당하는 친구를 추가합니다
+     * @param roomId 방 id값
+     * @param friend 친구 id값
+     */
+    'ChatRoom.invite'(roomId, friendId)
+    {
+        var _id = UserAddition.findOne({userId:Meteor.userId()})._id;
+        UserAddition.update(_id, {$push:{chatRoomList:roomId}});
+        ChatRoom.update(roomId, {$push:{whoIn:friendId}});
+    }
 });
 
