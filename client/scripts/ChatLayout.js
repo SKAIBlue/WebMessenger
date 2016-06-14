@@ -5,13 +5,15 @@
 function dateFormat(date)
 {
     var now = new Date();
-    if(now.getFullYear() == date.getFullYear() &&
-    now.getMonth() == date.getMonth() &&
-    now.getDay() == date.getDay())
+    if(now.getYear() != date.getYear())
     {
-        return ""
+        return date.getYear() + "년 " + ( date.getMonth() + 1) +"월 " + date.getDate() + "일 " + date.getHours() + ":" + date.getMinutes();
     }
-    return now;
+    if(now.getMonth() == date.getMonth() && now.getDate() == date.getDate())
+    {
+        return date.getHours() + "시 " + date.getMinutes() + "분";
+    }
+    return (date.getMonth() + 1) +"월 " + date.getDate() + "일 " + date.getHours() + ":" + date.getMinutes();
 }
 
 function getChatList(selectedChatRoom)
@@ -29,7 +31,6 @@ function getChatList(selectedChatRoom)
             chatText:item.chatText,
             chatTime:time,
             isYou(){
-                console.log(Meteor.userId() + " " + item.chatUserId);
                 return Meteor.userId() != item.chatUserId;
             },
             position(){

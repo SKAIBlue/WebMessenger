@@ -80,17 +80,14 @@ function buildRoomName(roomId)
         // 방 제목을 설정하지 않은 경우
         if(whoIn.length == 2)
         {
-            console.log(whoIn[0] +" " + Session.get(SESSION_USER_ID));
             if(whoIn[0] == Session.get(SESSION_USER_ID))
             {
-                console.log("1");
                 var friend = UserAddition.findOne({userId:whoIn[1]});
                 var nickName = friend.nickName.length == 0 ? friend.email : friend.nickName;
                 return  nickName + " 님과의 대화"
              }
             else
             {
-                console.log("2");
                 var friend = UserAddition.findOne({userId:whoIn[0]});
                 var nickName = friend.nickName.length == 0 ? friend.email : friend.nickName;
                 return nickName + " 님과의 대화"
