@@ -39,17 +39,14 @@
         <div class="modal-content add-friend-list">
             <div class="search-friend row">
                 <form class="search-text-field">
-                    <input id="input_add_friend" class ="col s9" type="text" placeholder="이메일 또는 닉네임을 입력하세요." autofocus/>
+                    <input id="input_add_friend" class ="col s12" type="text" placeholder="이메일 또는 닉네임을 입력하세요." autofocus/>
                 </form>
-                <p id="find_friend_list" class="offset-s1 col s2 send-button-form col s1 btn tooltipped" data-position="right" data-delay="50"
-                      data-tooltip="찾기">찾기</p>
                 {{#each add_friend_list}}
                     {{>AddFriend}}
                 {{/each}}
 
             </div>
         </div>
-        <div id="add_selected_friends" class="btn">추가</div>
     </div>
     <!-- for 설정 버튼 드롭다운 메뉴 -->
     <ul id='settings-btn' class='dropdown-content'>

@@ -6,14 +6,11 @@
                 <form class="search-invite-friend-form">
                     <input id="input_add_friend" class ="col s9" type="text" placeholder="이메일 또는 닉네임을 입력하세요." autofocus/>
                 </form>
-                <p id="find_friend_list" class="offset-s1 col s2 send-button-form col s1 btn tooltipped" data-position="right" data-delay="50"
-                   data-tooltip="찾기">찾기</p>
                 {{#each myfriend_list}}     <!--in FriendList.js-->
                     {{>InviteFriendList}}
                 {{/each}}
             </div>
         </div>
-        <div id="invite_selected_friends" class="btn">초대</div>
     </div>
     <script>
         function choose_friend() {
@@ -21,7 +18,6 @@
         }
     </script>
 </template>
-
 <template name="InviteFriendList">
     <form class="invite-friend-box">
         <div id ="friend-box" > <!-- 친구 -->
@@ -40,4 +36,5 @@
             </a>
         </div>
     </form>
+
 </template>

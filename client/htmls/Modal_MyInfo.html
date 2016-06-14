@@ -9,7 +9,6 @@
                        data-position="right" data-delay="50"
                        data-tooltip="바꾸기">바꾸기</p>
                 </form>
-
             </div>
             <div class="row">
                 <div class="separate-line"><h6 class="white-text center">비밀번호 변경</h6></div>
@@ -21,17 +20,17 @@
                        data-position="right" data-delay="50"
                        data-tooltip="바꾸기">바꾸기</p>
                 </form>
-
             </div>
             <div class="separate-line"><h6 class="white-text center">프로필 사진 변경</h6></div>
             <div class="row">
-                <div class="center" onclick="changeProfileImg()"><img src="img/default_profile.png"
-                                                                      class="circle responsive-img profile-info"></div>
+                <div class="center" onclick="changeProfileImg()"><img src="img/default_profile.png" class="circle responsive-img profile-info"></div>
             </div>
+            <p id="profile_change_btn" class="offset-s7 col s5 send-button-form col s1 btn tooltipped" data-position="right" data-delay="50"
+               data-tooltip="프로필 변경">프로필 변경</p>
         </div>
     </div>
     <script>
-        function changeProfileImg() {
+        function changeProfileImg(){
             alert("upload!");
             //TODO 프로필 업로드 구현
         }
