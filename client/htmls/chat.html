@@ -7,14 +7,12 @@
     {{#if isFile}}<!-- 파일 -->
         <div class="bubble {{position}}">
             {{#if isImage}}
-                <a href="{{chatFilePath}}">
-                    <img src="{{chatText}}"></a>
+                <a href="{{chatFilePath}}"><img src="{{chatText}}"></a>
             {{else}}
                 <a href="#" download data-url="{{chatFilePath}}" type="button" class="download-file">
                     <img src="img/file_icon.png"></a>
             {{/if}}
             <br>
-            {{chatFilePath}}
             <div class="time">{{chatTime}}</div>
         </div>
         <br>

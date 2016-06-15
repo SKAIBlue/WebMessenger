@@ -198,6 +198,12 @@ body{
     background-color: gray;
 
 }
+.title-text{
+    font-size: 50px;
+    font-family: 'Nanum Brush Script';
+    font-style: normal;
+    font-weight: 400;
+}
 #profile_change_btn{
     margin-left: 35%;
 }
@@ -211,7 +217,7 @@ body{
     top: auto;
     right: auto;
     bottom: 10%;
-    left:40%;
+    left:50%;
 }
 #helpText{
     margin-top: 25%;

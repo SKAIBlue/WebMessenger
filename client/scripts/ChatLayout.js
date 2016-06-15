@@ -71,7 +71,7 @@ Template.ChatLayout.onCreated(function(){
 Template.ChatLayout.rendered = function()
 {
     Uploader.render.call(this);
-}
+};
 
 Template.ChatLayout.helpers({
     chat_list(){
