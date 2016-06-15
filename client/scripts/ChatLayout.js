@@ -123,10 +123,9 @@ Template.ChatLayout.events({
     'click #send-file-button-form'(){
         console.log("click!");
         $('#chat-send-file').click();
-        console.log("change button");
         Session.set(SESSION_UPLOAD_SELECTOR, UPLOAD_FILE);
     },
-    'click .send-file'()
+    'click #send-file-button'()
     {
         Uploader.startUpload.call(Template.instance(), event);
     }

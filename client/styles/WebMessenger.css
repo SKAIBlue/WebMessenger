@@ -154,9 +154,16 @@ body{
     height:500px;
     background: #444753;
 }
+.send-file{
+    margin-top:20%;
+    width:300px;
+    height:130px;
+    background: #444753;
+    overflow:hidden;
+}
 .add-friend{
-    width:500px;
-    height:500px;
+    width:200px;
+    height:100px;
     background: #444753;
 
 }
@@ -226,7 +233,15 @@ body{
     font-style: normal;
     font-weight: 400;
 }
-
+#fileMsg{
+    font-size: 25px;
+    font-family: 'Nanum Brush Script';
+    font-style: normal;
+    font-weight: 400;
+}
+#send-file-button{
+    margin-left:30%;
+}
 @media screen and (max-width:992px) {
     .input-chat {
         margin-bottom  : 0%;

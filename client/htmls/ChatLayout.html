@@ -22,17 +22,16 @@
             <i class="waves-effect waves-light material-icons tooltipped blue-text" data-position="top" data-delay="50"
                data-tooltip="파일 첨부">attachment</i>
         </form>
-        <input id="chat-send-file" type='file' name='file' class="jqUploadclass hide-file-upload-box send-file-input-form" accept=''
+        <input id="chat-send-file" onchange="open_send_file()" type='file' name='file' class="jqUploadclass hide-file-upload-box send-file-input-form" accept=''
                data-form-data='{{submitData}}'/>
     </div>
-
     <div id="send-file" class="modal send-file">
         <div class="modal-content send-file-info">
-            파일을 전송합니다
-            <form class="send-file-form" onchange="$('#send-file').openModal();">
+            <div id="fileMsg" class="white-text center">선택한 파일을 전송 하시겠습니까?</div>
+            <form class="send-file-form">
                 <p id="send-file-button" class="offset-s7 col s5 send-button-form col s1 btn tooltipped"
-                   data-position="right" data-delay="50"
-                   data-tooltip="파일 전송">파일 전송</p>
+                   data-position="bottom" data-delay="50"
+                   data-tooltip="전송" onclick="$('.send-file').closeModal()">전송</p>
             </form>
         </div>
     </div>
