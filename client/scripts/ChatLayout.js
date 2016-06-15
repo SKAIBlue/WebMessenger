@@ -25,7 +25,32 @@ function getChatList(selectedChatRoom)
         var profile = user.profile.length == 0 ? PROFILE_DEFAULT_PATH : user.profile;
         var nickName = user.nickName.length == 0 ? user.email : user.nickName;
         var time = dateFormat(item.chatTime);
-        var text = item.isFile ? (item.isImage ? item.chatText:"img/file_icon.png"): item.chatText;
+        var text ="";
+        if(item.isFile)
+        {
+            if(item.isImage)
+            {
+                text = item.chatText;
+            }
+            else
+            {
+                text = "img/file_icon.png";
+            }
+        }
+        else if(item.isInvite)
+        {
+            console.log("is invite");
+            var invitedUser = UserAddition.findOne({userId:item.chatText});
+            text = invitedUser.nickName.length == 0 ? invitedUser.email : invitedUser.nickName;
+            console.log(invitedUser);
+        }
+        else
+        {
+            text = item.chatText;
+        }
+
+        console.log(item.isInvite);
+
         result.push({
             chatWho:nickName,
             chatProfile:profile,
@@ -34,7 +59,7 @@ function getChatList(selectedChatRoom)
             isFile:item.isFile,
             isImage:item.isImage,
             chatFilePath:item.chatText,
-            isInvite : "",
+            isInvite : item.isInvite,
             isYou(){
                 return Meteor.userId() != item.chatUserId;
             },
@@ -100,7 +125,11 @@ Template.ChatLayout.events({
         $('#chat-send-file').click();
         console.log("change button");
         Session.set(SESSION_UPLOAD_SELECTOR, UPLOAD_FILE);
+    },
+    'click .send-file'()
+    {
         Uploader.startUpload.call(Template.instance(), event);
     }
+
 });
 

@@ -1,7 +1,9 @@
 <template name="chat">
 <p class="col s12">
     {{#if isYou}}
+        {{#unless isInvite}}
         <img src="{{chatProfile}}" class="circle profile-chat you">{{chatWho}}<br>
+        {{/unless}}
     {{/if}}
 
     {{#if isFile}}<!-- 파일 -->
@@ -18,7 +20,7 @@
         <br>
     {{/if}}
     {{#if isInvite}}    <!-- isInvite에 데이터가 있으면 초대 알림 출력, 없으면 text 채팅 -->
-        <div class="invite-friend-notice center white-text">{{isInvite}}님을 초대 했습니다.</div>
+        <div class="invite-friend-notice center white-text">{{chatWho}}님이 {{chatText}}님을 초대 했습니다.</div>
     {{else}}<!-- text 채팅-->
         {{#unless isFile}} <!-- 파일에도 text가 있음으로 NOT IsFile 이면 출력-->
             <div class="bubble {{position}}">{{chatText}}<br>

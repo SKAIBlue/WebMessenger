@@ -47,7 +47,18 @@ Template.ModalInviteFriendList.events({
 Template.InviteFriendList.events({
     'click .invite-friend-box'(e)
     {
-        Meteor.call('ChatRoom.invite',Session.get(SESSION_SELECTED_CHAT_ROOM),this.friendId);
+        var selectedChatRoom = Session.get(SESSION_SELECTED_CHAT_ROOM);
+        Meteor.call('ChatRoom.invite',selectedChatRoom,this.friendId);
+
+        Chat.insert({
+            chatUserId: Session.get(SESSION_USER_ID),
+            chatRoomId: selectedChatRoom,
+            chatText:this.friendId,
+            chatTime:new Date(),
+            isFile:false,
+            isImage:false,
+            isInvite:true
+        });
         $('#invite-friend').closeModal();
     }
 });

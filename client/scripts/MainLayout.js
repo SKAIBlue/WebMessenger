@@ -150,7 +150,11 @@ function getChatRoomList(keyword) {
                 roomId: roomId,
                 chatRoomName: buildRoomName(roomId),
                 chatRoomImage: getRoomImage(roomId),
-                NeedNotice:function(){ return "room"}// TODO CHECK 새로 읽을 채팅이 있으면 "room-new-alarm" 을 리턴
+                NeedNotice:function()
+                {
+                    // TODO CHECK 새로 읽을 채팅이 있으면 "room-new-alarm" 을 리턴
+                    return "room"
+                }
                                                     // 없으면 "room" 반환, 방 클릭시 NeedNotice 반환이 "room" 이 되어야함
             });
         }
