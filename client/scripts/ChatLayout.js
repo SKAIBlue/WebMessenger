@@ -50,7 +50,7 @@ function getChatList(selectedChatRoom)
         }
 
         console.log(item.isInvite);
-
+        var userId = Session.get(SESSION_USER_ID);
         result.push({
             chatWho:nickName,
             chatProfile:profile,
@@ -61,7 +61,7 @@ function getChatList(selectedChatRoom)
             chatFilePath:item.chatText,
             isInvite : item.isInvite,
             isYou(){
-                return Meteor.userId() != item.chatUserId;
+                return userId != item.chatUserId;
             },
             position(){
                 return (this.isYou()) ? "you":"me";

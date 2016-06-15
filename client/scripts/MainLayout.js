@@ -8,7 +8,7 @@ import { Template } from 'meteor/templating';
  * @constructor
  */
 function FriendList() {
-    var myAddition = UserAddition.findOne({userId: Meteor.userId()});
+    var myAddition = UserAddition.findOne({userId: Session.get(SESSION_USER_ID)});
     if (myAddition) {
         var friendIds = myAddition.friends;
         var result = [];
@@ -41,11 +41,11 @@ function SearchFriend(email) {
     var regEx = email + '.*';
     var results = [];
     var users = UserAddition.find({email: {$regex: regEx}});
-    var myAddition = UserAddition.findOne({userId: Meteor.userId()});
+    var myAddition = UserAddition.findOne({userId: Session.get(SESSION_USER_ID)});
     if(myAddition)
     {
         users.forEach(function (user) {
-            if (myAddition.friends.indexOf(user.userId) > -1 || user.userId == Meteor.userId()) {
+            if (myAddition.friends.indexOf(user.userId) > -1 || user.userId == Session.get(SESSION_USER_ID)) {
                 return;
             }
             var friend = UserAddition.findOne({userId: user.userId});
@@ -155,7 +155,7 @@ function getChatRoomList(keyword) {
                     // TODO CHECK 새로 읽을 채팅이 있으면 "room-new-alarm" 을 리턴
                     return "room"
                 }
-                                                    // 없으면 "room" 반환, 방 클릭시 NeedNotice 반환이 "room" 이 되어야함
+                // 없으면 "room" 반환, 방 클릭시 NeedNotice 반환이 "room" 이 되어야함
             });
         }
         return chatRoom;
@@ -186,12 +186,12 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated() {
             Session.set(SESSION_NICK_NAME, result.nickName);
         }
         else {
-            // 결과가 없을 경우 새로운 사용자 추가정보 추가
+            var userId = Meteor.userId();
             var email = Meteor.user().emails[0].address;
-            Meteor.call("addNewUserAddition", Meteor.userId(), email);
-            Session.setDefault(SESSION_USER_ID, Meteor.userId());
+            Meteor.call("addNewUserAddition", userId, email);
+            Session.setDefault(SESSION_USER_ID, userId);
             Session.setDefault(SESSION_NICK_NAME, "");
-            Session.set(SESSION_USER_ID, Meteor.userId());
+            Session.set(SESSION_USER_ID, userId);
             Session.set(SESSION_NICK_NAME, "");
         }
     });

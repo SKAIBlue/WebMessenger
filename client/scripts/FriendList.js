@@ -10,10 +10,11 @@ Template.FriendList.events({
 });
 
 CreateChatRoom = function(id){
-    var myAddition = UserAddition.findOne({userId:Meteor.userId()});
+    var userId = Meteor.userId();
+    var myAddition = UserAddition.findOne(userId);
     var friendAddition = UserAddition.findOne({userId:id});
     var chatRoomId = ChatRoom.insert({
-        whoIn:[ Meteor.userId(), id ],
+        whoIn:[ userId, id ],
         chatRoomName:"",
         chatRoomImage:""
     });
