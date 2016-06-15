@@ -37,7 +37,7 @@ Template.MyInfo.events({
         }
         else
         {
-            alert("입력한 비밀번호가 다릅니다");
+            Materialize.toast("1차, 2차 비밀번호가  서로 다릅니다.",3000);
         }
     },
     'click .profile-image-form'()

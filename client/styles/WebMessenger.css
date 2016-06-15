@@ -181,6 +181,10 @@ body{
     margin-left : 29%;
     margin-top : 820px;
 }
+.invite-friend-notice{
+    background-color: gray;
+
+}
 #profile_change_btn{
     margin-left: 35%;
 }
@@ -225,9 +229,19 @@ body{
         height :85%;
     }
 }
-@media screen and (max-height: 845px){
+@media screen and (max-height: 950px){
+    .chat-list{
+        height :84%;
+    }
+}
+@media screen and (max-height: 890px){
     .chat-list{
         height :80%;
+    }
+}
+@media screen and (max-height: 750px){
+    .chat-list{
+        height :78%;
     }
 }
 @media screen and (max-height: 690px){

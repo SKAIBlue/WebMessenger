@@ -3,7 +3,8 @@
     {{#if isYou}}
         <img src="{{chatProfile}}" class="circle profile-chat you">{{chatWho}}<br>
     {{/if}}
-    {{#if isFile}}
+
+    {{#if isFile}}<!-- 파일 -->
         <div class="bubble {{position}}">
             {{#if isImage}}
                 <a href="{{chatFilePath}}">
@@ -17,10 +18,13 @@
             <div class="time">{{chatTime}}</div>
         </div>
         <br>
-    {{else}}
-        <div class="bubble {{position}}">{{chatText}}<br>
-            <div class="time">{{chatTime}}</div>
-        </div>
+    {{/if}}
+    {{#if isInvite}}    <!-- isInvite에 데이터가 있으면 초대 알림 출력, 없으면 text 채팅 -->
+        <div class="invite-friend-notice center white-text">{{isInvite}}님을 초대 했습니다.</div>
+        {{else}}<!-- text 채팅-->
+            <div class="bubble {{position}}">{{chatText}}<br>
+                <div class="time">{{chatTime}}</div>
+            </div>
     {{/if}}
     </p>
 </template>

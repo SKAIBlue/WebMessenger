@@ -22,7 +22,7 @@ Meteor.startup(function() {
         {
             var _id = UserAddition.findOne({userId:Meteor.userId()})._id;
             UserAddition.update(_id, {$set:{profile:"upload/"+file.path}});
-            alert("프로필이 변경되었습니다.");
+            Materialize.toast('프로필 사진 변경 완료',3000);
         }
     }
 });
