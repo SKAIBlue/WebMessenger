@@ -5,6 +5,7 @@ html{
 body{
     height:100%;
     overflow:hidden;
+    background: #F2F5F8;
 }
 .bubble{
     background-color: #F2F2F2;
@@ -211,6 +212,13 @@ body{
     right: auto;
     bottom: 10%;
     left:40%;
+}
+#helpText{
+    margin-top: 25%;
+    font-size: 50px;
+    font-family: 'Nanum Brush Script';
+    font-style: normal;
+    font-weight: 400;
 }
 
 @media screen and (max-width:992px) {

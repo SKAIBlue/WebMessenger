@@ -4,18 +4,24 @@
 Template.NoneSelectChatRoom.helpers({
    helpText(){
        var MyAddition = UserAddition.findOne({userId:Meteor.userId()});
-       if(MyAddition.chatRoomList.length != 0 && MyAddition.friends.length == 0)
+       console.dir(MyAddition);
+       if(MyAddition.chatRoomList.length == 0 && MyAddition.friends.length == 0)
        {
-           return "상단의 얼굴 아이콘을 눌러 친구를 추가 할 수 있습니다. 왼쪽의 채팅방을 눌러 채팅을 시작하세요"
+           $('#helpText').append("반갑습니다!</br><i class='medium material-icons'>face</i> 를 눌러 친구를 추가한후" +
+               "</br><i class='medium material-icons'>add</i>를 눌러 추가된 친구와 대화를 시작하세요!");
+           return;
        }
        else if(MyAddition.friends.length == 0 )
        {
-           return "상단의 얼굴 아이콘을 눌러 친구를 추가 해 주세요";
+           $('#helpText').append("<i class='medium material-icons'>face</i> 를 눌러서 친구를 추가하세요");
+           return;
        }
        else if(MyAddition.chatRoomList.length == 0)
        {
-           return "상단의 + 아이콘을 눌러 채팅방을 추가하세요";
+           $('#helpText').append("<i class='medium material-icons'>add</i> 를 눌러서 대화를 시작하세요");
+           return;
        }
-       return "왼쪽의 채팅방을 눌러 채팅을 시작하세요";
+       $('#helpText').append("<i class='medium material-icons'>face</i> 를 눌러서 대화를 시작하세요");
+       return;
    }
 });
