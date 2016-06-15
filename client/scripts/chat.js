@@ -3,7 +3,7 @@
  */
 
 function scrollBottom() {
-    var scroll = $('.chat-list-inner');
+    var scroll = $('.chat-list');
     scroll.scrollTop(scroll.prop('scrollHeight'));
 }
 
