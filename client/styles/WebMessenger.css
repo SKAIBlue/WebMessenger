@@ -61,6 +61,8 @@ body{
 .profile-room {
     height:64px;
     width: 64px;
+    margin-top :1%;
+    margin-left :2%;
     align:center;
 }
 .profile-info{
@@ -87,10 +89,20 @@ body{
     overflow: hidden;
 }
 .room{
-    width :80%;
-    margin-left: 10%;
+    width : 90%;
+    margin-left: 5%;
     margin-bottom:5%;
     border-radius: 10px;
+
+}
+.room-new-alarm{
+    width :90%;
+    margin-left: 5%;
+    margin-bottom:5%;
+    border-radius: 10px;
+    animation-name: alarm-scale-change;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
 }
 .room-mobile{
     border-bottom: 2px solid azure;
@@ -248,4 +260,15 @@ body{
     .chat-list{
         height :77%;
     }
+}
+@keyframes alarm-scale-change {
+
+    0% { transform: scale(1); }
+    30% { transform: scale(1); }
+    40% { transform: scale(1.08); }
+    50% { transform: scale(1); }
+    60% { transform: scale(1); }
+    70% { transform: scale(1.05); }
+    80% { transform: scale(1); }
+    100% { transform: scale(1); }
 }

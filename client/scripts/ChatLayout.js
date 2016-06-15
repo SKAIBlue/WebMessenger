@@ -34,19 +34,14 @@ function getChatList(selectedChatRoom)
             isFile:item.isFile,
             isImage:item.isImage,
             chatFilePath:item.chatText,
+            isInvite : "",
             isYou(){
                 return Meteor.userId() != item.chatUserId;
             },
             position(){
                 return (this.isYou()) ? "you":"me";
-            },
-            isInvite(){
             }
         });
-    });
-    //친구 초대 테스트용
-    result.push({
-        isInvite : "김태훈"
     });
     return result;
 }

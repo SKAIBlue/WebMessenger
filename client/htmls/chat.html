@@ -21,10 +21,17 @@
     {{/if}}
     {{#if isInvite}}    <!-- isInvite에 데이터가 있으면 초대 알림 출력, 없으면 text 채팅 -->
         <div class="invite-friend-notice center white-text">{{isInvite}}님을 초대 했습니다.</div>
-        {{else}}<!-- text 채팅-->
+    {{else}}<!-- text 채팅-->
+        {{#unless isFile}} <!-- 파일에도 text가 있음으로 NOT IsFile 이면 출력-->
             <div class="bubble {{position}}">{{chatText}}<br>
                 <div class="time">{{chatTime}}</div>
             </div>
+        {{/unless}}
     {{/if}}
     </p>
+    <script>
+        function imgModalOpen(){
+            alert("hello");
+        }
+    </script>
 </template>
