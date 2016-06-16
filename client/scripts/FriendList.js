@@ -11,7 +11,7 @@ Template.FriendList.events({
 
 CreateChatRoom = function(id){
     var userId = Session.get(SESSION_USER_ID);
-    var myAddition = UserAddition.findOne(userId);
+    var myAddition = UserAddition.findOne({userId:userId});
     var friendAddition = UserAddition.findOne({userId:id});
     var chatRoomId = ChatRoom.insert({
         whoIn:[ userId, id ],
