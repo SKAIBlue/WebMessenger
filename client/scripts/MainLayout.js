@@ -138,6 +138,7 @@ function getRoomImage(roomId) {
 function getChatRoomList(keyword) {
     Meteor.subscribe('UserAddition');
     Meteor.subscribe('ChatRoom');
+    Meteor.subscribe('Chat');
     var addition = UserAddition.findOne({userId: Session.get(SESSION_USER_ID)});
     if (addition) {
         var myChatRoom = addition.chatRoomList;
