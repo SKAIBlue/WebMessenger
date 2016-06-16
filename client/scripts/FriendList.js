@@ -6,6 +6,7 @@ Template.FriendList.events({
    'click .friend-list-box'(e){
        CreateChatRoom(this.friendId);
        Materialize.toast("새로운 채팅방이 만들어 졌습니다.",3000);
+       Meteor.subscribe('ChatRoom');
    }
 });
 

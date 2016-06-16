@@ -54,7 +54,7 @@ Template.MyInfo.events({
     {
 //        Uploader.init(onCreate);
 //        Uploader.render.call(onRender);
-        console.log('click upload button');
+        //console.log('click upload button');
         Uploader.startUpload.call(Template.instance(), e);
     }
 });

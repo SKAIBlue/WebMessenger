@@ -24,6 +24,6 @@ Template.NoneSelectChatRoom.helpers({
            $('#helpText').append("반갑습니다!");
            return;
        }
-       console.log("NoneSelectChatRoom help text: MyAddition is undefined");
+       //console.log("NoneSelectChatRoom help text: MyAddition is undefined");
    }
 });

@@ -18,6 +18,7 @@ function dateFormat(date)
 
 function getChatList(selectedChatRoom)
 {
+    Meteor.subscribe('Chat');
     var chat = Chat.find({chatRoomId:selectedChatRoom});
     var result = [];
     chat.forEach(function(item){
@@ -39,17 +40,17 @@ function getChatList(selectedChatRoom)
         }
         else if(item.isInvite)
         {
-            console.log("is invite");
+            //console.log("is invite");
             var invitedUser = UserAddition.findOne({userId:item.chatText});
             text = invitedUser.nickName.length == 0 ? invitedUser.email : invitedUser.nickName;
-            console.log(invitedUser);
+            //console.log(invitedUser);
         }
         else
         {
             text = item.chatText;
         }
 
-        console.log(item.isInvite);
+        //console.log(item.isInvite);
         var userId = Session.get(SESSION_USER_ID);
         result.push({
             chatWho:nickName,
@@ -121,7 +122,7 @@ Template.ChatLayout.events({
         input.value = "";
     },
     'click #send-file-button-form'(){
-        console.log("click!");
+        //console.log("click!");
         $('#chat-send-file').click();
         Session.set(SESSION_UPLOAD_SELECTOR, UPLOAD_FILE);
     },

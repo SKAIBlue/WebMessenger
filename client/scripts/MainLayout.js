@@ -8,6 +8,7 @@ import { Template } from 'meteor/templating';
  * @constructor
  */
 function FriendList() {
+    Meteor.subscribe('UserAddition');
     var myAddition = UserAddition.findOne({userId: Session.get(SESSION_USER_ID)});
     if (myAddition) {
         var friendIds = myAddition.friends;
@@ -25,7 +26,7 @@ function FriendList() {
         }
         return result;
     }
-    console.log("FriendList MyAddition return undefined");
+    //console.log("FriendList MyAddition return undefined");
     return [];
 }
 /**
@@ -35,6 +36,7 @@ function FriendList() {
  * @constructor
  */
 function SearchFriend(email) {
+    Meteor.subscribe('UserAddition');
     if (email.length == 0) {
         return;
     }
@@ -97,7 +99,7 @@ function buildRoomName(roomId) {
         }
         return chatRoom.chatRoomName;
     }
-    console.log("build room name chat room is undefined");
+    //console.log("build room name chat room is undefined");
     return "제목 생성 오류";
 }
 
@@ -134,6 +136,8 @@ function getRoomImage(roomId) {
 }
 
 function getChatRoomList(keyword) {
+    Meteor.subscribe('UserAddition');
+    Meteor.subscribe('ChatRoom');
     var addition = UserAddition.findOne({userId: Session.get(SESSION_USER_ID)});
     if (addition) {
         var myChatRoom = addition.chatRoomList;
@@ -160,7 +164,7 @@ function getChatRoomList(keyword) {
         }
         return chatRoom;
     }
-    console.log("userAddtion return undefined");
+    //console.log("userAddtion return undefined");
     return [];
 }
 
