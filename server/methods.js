@@ -73,7 +73,7 @@ Meteor.methods({
      */
     'Users.ChangePassword'(oldPassword, newPassword, callback)
     {
-        this.changePassword(oldPassword,newPassword, callback);
+        Accounts.changePassword(oldPassword,newPassword, callback);
     }
 });
 

@@ -28,11 +28,16 @@ Template.MyInfo.events({
         var password2 = document.getElementById('input_password2');
         if(password1.value == password2.value)
         {
-            Meteor.call('Users.ChangePassword', oldPassword.value, password1.value, function(err){
+            Accounts.changePassword(oldPassword.value, password1.value, function(err){
                 if(err)
                 {
-                    alert("오류");
+                    Materialize.toast(err);
                 }
+                else
+                {
+                    Materialize.toast("비밀번호가 성공적으로 변경되었습니다",3000);
+                }
+
             });
         }
         else
