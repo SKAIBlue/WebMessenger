@@ -38,7 +38,7 @@ function FriendList() {
 function SearchFriend(email) {
     Meteor.subscribe('UserAddition');
     if (email.length == 0) {
-        return;
+        return [];
     }
     var regEx = email + '.*';
     var results = [];
@@ -178,10 +178,12 @@ Template.MainLayout.onCreated(function MainLayoutOnCreated() {
     Session.setDefault(SESSION_SEARCH_KEY_WORD, "");
     Session.setDefault(SESSION_UPLOAD_SELECTOR, "");
     Session.setDefault(SESSION_INPUT_READ_URL, "");
+    Session.setDefault(SESSION_CHAT_COUNT, CHAT_COUNT_INCREMENT);
     Session.set(SESSION_SELECTED_CHAT_ROOM, "");
     Session.set(SESSION_SEARCH_KEY_WORD, "");
     Session.set(SESSION_UPLOAD_SELECTOR, "");
     Session.set(SESSION_INPUT_READ_URL, "");
+    Session.set(SESSION_CHAT_COUNT, CHAT_COUNT_INCREMENT);
     Meteor.call("UserAddition.findOne", Meteor.userId(), function (err, result) {
         if (result) {
             Session.setDefault(SESSION_USER_ID, result.userId);

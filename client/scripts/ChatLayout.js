@@ -19,7 +19,7 @@ function dateFormat(date)
 function getChatList(selectedChatRoom)
 {
     Meteor.subscribe('Chat');
-    var chat = Chat.find({chatRoomId:selectedChatRoom});
+    var chat = Chat.find({chatRoomId:selectedChatRoom}, {sort: {chatTime:-1}, limit: Session.get(SESSION_CHAT_COUNT) });
     var result = [];
     chat.forEach(function(item){
         var user = UserAddition.find({userId:item.chatUserId}).fetch()[0];
@@ -69,6 +69,7 @@ function getChatList(selectedChatRoom)
             }
         });
     });
+    result.reverse();
     return result;
 }
 
@@ -88,6 +89,7 @@ function sendMessage(message)
         isFile:false,
         isImage:false
     });
+    Session.set(SESSION_CHAT_COUNT, Session.get(SESSION_CHAT_COUNT) + 1);
 }
 
 Template.ChatLayout.onCreated(function(){
@@ -129,6 +131,7 @@ Template.ChatLayout.events({
     'click #send-file-button'()
     {
         Uploader.startUpload.call(Template.instance(), event);
+        Session.set(SESSION_CHAT_COUNT, Session.get(SESSION_CHAT_COUNT) + 1);
     }
 
 });

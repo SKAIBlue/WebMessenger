@@ -5,5 +5,6 @@ Template.room.events({
     'click .chat-room-box'()
     {
         Session.set(SESSION_SELECTED_CHAT_ROOM, this.roomId);
+        Session.set(SESSION_CHAT_COUNT, 20);
     }
 });

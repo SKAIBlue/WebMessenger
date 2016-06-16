@@ -1,11 +1,21 @@
 <template name="ChatLayout">
-    <div class="chat-list">
+    <div id="chat-list" class="chat-list">
         <div class="row chat-list-inner">
             {{#each chat_list}}
                 {{>chat}}
             {{/each}}
         </div>
     </div>
+    <script>
+        $('.chat-list').scroll(function(){
+            var scroll = document.getElementById('chat-list');
+            if(scroll.scrollTop == 0)
+            {
+                Session.set(SESSION_CHAT_COUNT,Session.get(SESSION_CHAT_COUNT) + CHAT_COUNT_INCREMENT);
+            }
+            //console.log(scroll.scrollTop);
+        });
+    </script>
     <div class="input-chat row">
         <a><i class="invite-friend-btn waves-effect waves-light material-icons tooltipped" data-position="top"
               data-delay="50"
